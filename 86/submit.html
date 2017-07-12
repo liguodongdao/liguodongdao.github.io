@@ -1,0 +1,120 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-touch-fullscreen" content="yes">
+    <meta content="telephone=no,email=no" name="format-detection">
+    <meta content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no" name="viewport">
+    <meta content="black" name="apple-mobile-web-app-status-bar-style">
+    <meta name="msapplication-tap-highlight" content="no">
+    <meta name="wap-font-scale" content="no">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <link rel="stylesheet" type="text/css" href="./styles/main.css">
+    <title>丰田86</title>
+  </head>
+  <body>
+    <header>
+        <h1><a href="./index.html"><img src="images/86_logo.png"></a></h1>
+        <span class="navtoggle"><img src="images/86_nav.png"></span>
+         <nav>
+            <p><a href="./history.html">86历史</a></p>
+            <p><a href="./power.html">动力与操控</a></p>
+            <p><a href="./appearance.html">外观</a></p>
+            <p><a href="./interior.html">内饰</a></p>
+            <p><a href="./safety.html">安全</a></p>
+            <p><a href="./gallery.html">图库</a></p>
+            <p><a href="./submit.html">预约赏车</a></p>
+            <p><a href="./search.html">查询经销商</a></p>
+        </nav>
+    </header>
+    <!--提交页面-->
+    <section class="p-submit" style="display:block">
+        <div class="content">
+            <p class="content-line">
+                <select name="province">
+                    <option>省&nbsp;&nbsp;&nbsp;份</option>
+                    <option>山东省</option>
+                </select>
+            </p>
+            <p class="content-line">
+                <select name="city">
+                    <option>城&nbsp;&nbsp;&nbsp;市</option>
+                    <option>济南市</option>
+                </select>
+            </p>
+            <p class="content-line">
+                <input type="text" name="username" maxlength="10" placeholder="姓&nbsp;&nbsp;&nbsp;名">
+            </p>
+            <p class="content-line">
+                <input type="text" name="userphone" maxlength="11" placeholder="手机号码">
+            </p>
+            <p class="content-line">
+                <select name="agency">
+                    <option>经销商选择</option>
+                </select>
+            </p>
+            <p class="content-line content-date last">
+                <span id="date-show">意向赏车时间</span>
+                <input type="date" name="whishdate" placeholder="意向赏车时间" min="2016-08-31" max="2016-09-05">
+            </p>
+            <p class="content-action">
+                <button class="submit"></button>
+            </p>
+            <p class="content-search">
+                <a href="./search.html"><i class="i-ico"><img src="./images/ico/86_i_address.png"></i>查找全国30家经销商</a>
+            </p>
+        </div>
+    </section>
+    <section class="p-submitsuccess" style="display:none">
+        <div class="qrcode" style="display:block">
+            <div class="qrcode-head">
+                <img src="./images/86_submit_ico.png">
+            </div>
+            <div class="qrcode-img">
+                <img src="./images/86_qrcode.jpg">
+            </div>
+            <p>长按识别二维码,</p>
+            <p>关注新款丰田86各类活动资讯</p>
+            <p class="qrcode-share"><a class="backindex" href="./index.html"></a><button class="sharenow"></button></p>
+        </div>
+        <div class="share" style="display:none">
+            
+        </div>
+    </section>
+    <script type="text/javascript" src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+    <script type="text/javascript" src="./scripts/lib/zepto.js"></script>
+    <script type="text/javascript" src="./scripts/common.js"></script>
+    <script type="text/javascript" src="./scripts/pagesubmit.js"></script>
+	<script type="text/javascript" src="./scripts/wxshare.js"></script>
+    <script type="text/javascript">
+        $(function(){
+
+            //兼容居中显示
+            var $dateshow = $('#date-show');
+            $('[name="whishdate"]').on('change',function(e){
+                var val = $('[name="whishdate"]').val()||'意向赏车时间';
+                $dateshow.text(val);
+            });
+
+            //提交
+            function sub(){
+
+                var data = {
+                    province : $('[name="province"]').val(),
+                    city : $('[name="city"]').val(),
+                    name : $('[name="username"]').val(),
+                    phone : $('[name="userphone"]').val(),
+                    agency : $('[name="agency"]').val(),
+                    whishdate : $('[name="whishdate"]').val()
+                }
+                console.log(data);
+            }
+            $('.submit').on('click',function(){
+                sub();
+            })
+        });
+    </script>
+  </body>
+</html>

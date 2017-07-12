@@ -1,0 +1,91 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-touch-fullscreen" content="yes">
+    <meta content="telephone=no,email=no" name="format-detection">
+    <meta content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no" name="viewport">
+    <meta content="black" name="apple-mobile-web-app-status-bar-style">
+    <meta name="msapplication-tap-highlight" content="no">
+    <meta name="wap-font-scale" content="no">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <link rel="stylesheet" type="text/css" href="./styles/main.css">
+    <title>丰田86</title>
+  </head>
+  <body>
+    <header>
+        <h1><a href="./index.html"><img src="images/86_logo.png"></a></h1>
+        <span class="navtoggle"><img src="images/86_nav.png"></span>
+         <nav>
+            <p><a href="./history.html">86历史</a></p>
+            <p><a href="./power.html">动力与操控</a></p>
+            <p><a href="./appearance.html">外观</a></p>
+            <p><a href="./interior.html">内饰</a></p>
+            <p><a href="./safety.html">安全</a></p>
+            <p><a href="./gallery.html">图库</a></p>
+            <p><a href="./submit.html">预约赏车</a></p>
+            <p><a href="./search.html">查询经销商</a></p>
+        </nav>
+    </header>
+
+    <!--loading界面-->
+    <section class="p-loading" style="display:block">
+        <div class="loading-content">
+            <div class="con-ico"><img src="./images/86_ico.png"></div>
+            <div class="con-bottom">
+                <div class="con-top"></div>
+            </div>
+            <p class="con-number"></p>
+        </div>
+    </section>
+    
+    <!--index页动画屏-->
+    <section class="p-indexa" style="display:none">
+        <div class="indexa-car">
+            <div class="car1 active"><img src="./images/86_plt1.png"></div>
+            <div class="car2"><img src="./images/86_plt2.png"></div>
+            <div class="carlight"><img src="./images/86_plt3.png"></div>
+        </div>
+        <div class="indexa-man">
+            <img src="./images/86_p1man.png">
+        </div>
+        <div class="indexa-ico">
+            <span class="ico-a"></span>
+            <span class="ico-b"></span>
+        </div>
+    </section>
+
+    <!--index页内容屏-->
+    <section class="p-indexb" style="display:none">
+        <div class="indeb-wrapper" data-swiper="wrapper">
+            <div class="indexb-a">
+                <div class="man">
+                    <img class="man-bg" src="./images/86_indexba1.png">
+                    <img class="man-front" src="./images/86_indexba2.png">
+                </div>
+                <img class="text" src="./images/86_indexba3.png">
+                <div class="a-text"></div>
+                <span class="ico-up"><i class="i-ico"><img src="./images/ico/86_i_slideup.gif"></i></span>   
+            </div>
+            <div class="indexb-b">
+                <div class="b-link">
+                    <p><a href="history.html"></a></p>
+                    <p><a href="power.html"></a></p>
+                    <p><a href="appearance.html"></a></p>
+                    <p><a href="interior.html"></a></p>
+                    <p><a href="safety.html"></a></p>
+                    <p><a href="submit.html"></a></p>
+                </div>
+            </div>
+        </div>
+    </section>
+    <audio src="./images/indexmusic.aac" id="indexmusic" style="display:none"></audio>
+    <script type="text/javascript" src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+    <script type="text/javascript" src="./scripts/lib/zepto.js"></script>
+    <script type="text/javascript" src="./scripts/common.js"></script>
+    <script type="text/javascript" src="./scripts/pageindex.js"></script>
+    <script type="text/javascript" src="./scripts/wxshare.js"></script>
+  </body>
+</html>

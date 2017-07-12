@@ -1,0 +1,151 @@
+.p-indexa{
+    height:100%;
+    position:relative;
+    @include bg;
+    @include bgm('../images/86_bg2.jpg');
+    
+    .indexa-car{
+        position:absolute;
+        top:measure(750px);
+        width:measure(1140px);
+        height:measure(400px);
+        .car1,
+        .car2,
+        .carlight{ 
+            position:absolute;
+            width:100%;
+            height:100%;  
+            @include transition(opacity $duration);
+            opacity:0;
+            img{
+                width:100%; 
+            }
+            &.active{
+                opacity:1;
+            }
+        }
+    }
+    .indexa-man{
+        position:absolute;
+        top:measure(670px);
+        right:measure(210px);
+        width:measure(500px);
+        height:measure(590px);
+        img{
+            width:100%;
+        }
+    }
+    .indexa-ico{
+        display:block;
+        position:absolute;
+        width:measure(190px);
+        height:measure(190px);
+        bottom:measure(150px);
+        left:50%;
+        margin-left:measure(-95px);
+        @include bgm('../images/86_p1ico.png');
+        background-repeat:no-repeat;
+        background-position:center center;
+        background-size:contain;
+        .ico-a,
+        .ico-b{
+            display:block;
+            position:absolute;
+            width:100%;
+            height:100%;
+            border-radius:50%;
+            border:2px solid;
+            box-sizing:border-box;
+            @include transform-origin(50% 50%);
+        }
+        .ico-a{
+            border-color:#afafaf;
+            @include animation(myscale 3s infinite alternate);
+        }
+        .ico-b{
+            border-color:#dddddd;
+            @include animation(myscale 3s 1.5s infinite alternate);
+        }
+    }
+}
+.p-indexb{
+    overflow:hidden;
+    .indexb-a{
+        position:relative;
+        @include bg;
+        @include bgm('../images/86_indexb1.jpg');
+        .man{
+            position:relative;
+            z-index:2;
+            @include posa;
+            background-color:rgba(0,0,0,0.9);
+            img{
+                position:absolute;
+                bottom:0;
+                width:100%;
+                opacity:0;
+                @include transition(opacity $fastdura);
+                &.active{
+                    opacity:1;
+                }
+            }
+        }
+        .a-text{
+            position:absolute;
+            width:100%;
+            height:measure(400px);
+            background:url(../images/86_index_text.png) no-repeat center top;
+            top:measure(190px);
+            background-size:60%;
+            @include transition(transform $fastdura ease-in-out);
+            @include transform( translateY( measure(-500px) ) translateZ(0px) );
+            &.active{
+                @include transform( translateY(0px) translateZ(0px) );
+            }
+        }
+        .text{
+            position:absolute;
+            z-index:2;
+            top:measure(263px);
+            right:measure(20px);
+            width: measure(660px);
+            opacity:0;
+            @include transition(opacity $fastdura);
+            &.active{
+                opacity:1;
+            }
+        }
+        .ico-up{
+            display:inline-block;
+            position:absolute;
+            z-index:1;
+            left:50%;
+            margin-left:measure(-46px);
+            width:measure(92px);
+            bottom:measure(105px);
+        }
+    }
+    .indexb-b{
+        position:relative;
+        @include bgct;
+        @include bgm('../images/86_indexb2.jpg');
+        @include bgc(#222);
+        .b-link{
+            position:absolute;
+            @include bgct;
+            @include bgm('../images/86_p1f.png');
+            @include ma;
+            width:100%;
+            height:measure(1234px);
+            left:0px;
+            bottom:measure(90px);
+            p{
+                height:measure(210px);
+                a{
+                    display:block;
+                    height:100%;
+                }
+            }
+        }
+    }
+}

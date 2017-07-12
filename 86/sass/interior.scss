@@ -1,0 +1,52 @@
+.p-interior{
+	position:relative;
+	background-color:#000;
+	.interior-text{
+		position:absolute;
+		top:measure(190px);
+		width:measure(1240px);
+		height:measure(180px);
+		box-sizing:border-box;
+		padding-top:measure(20px);
+		@include bgct;
+		@include bgm('../images/86_interior_title.png');
+		text-align:center;
+		color:#fff;
+	}
+	.interior-main{
+		width:100%;
+		height:100%;
+		&>div{
+			display:none;
+			width:100%;
+			height:100%;
+			img{
+				width:100%;
+			}
+			&.active{
+				display:block;
+			}
+		}
+	}
+	.interior-slide{
+        position:absolute;
+        width:100%;
+        left:0;
+        bottom:measure(100px);
+    	img{
+    		display:block;
+    		width:100%;
+    	}
+    }
+    .interior-next{
+    	position:absolute;
+    	width:measure(330px);
+    	height:measure(160px);
+    	bottom:measure(85px);
+    	right:measure(50px);
+    	display:none;
+    	img{
+    		width:100%;
+    	}
+    }
+}

@@ -1,0 +1,154 @@
+//
+//页面提交
+//=========
+.p-submit{
+	@include bg;
+	@include bgm('../images/86_indexb1.jpg');
+	.content{
+		height:100%;
+		box-sizing:border-box;
+		@include bgct;
+		@include bgm('../images/86_submit_title.png');
+		background-color:rgba(0,0,0,0.8);
+		padding:measure(500px) measure(172px) 0 measure(172px);
+		p{
+			height: measure(120px);
+			text-align:center;
+			select,
+			input{
+				display:inline-block;
+				height:100%;
+				@include appearence(none);
+				background:none;
+				border:none;
+				color:#fff;
+				text-align:center;
+			}
+			input{
+				display:block;
+				width:50%;
+				margin:0 auto;
+			}
+			select{
+				padding:0 measure(220px);
+			}
+			.submit{
+				display:inline-block;
+				width: measure(590px);
+				height: measure(160px);
+				@include bg;
+				@include bgm('../images/86_submit_btn.png');
+				background-color:transparent;
+				border:none;
+			}
+		}
+		.content-line{
+			border-bottom: 1px #6e6e6e solid;
+			&.last{
+				border-bottom:none;
+			}
+		}
+		.content-date{
+			position:relative;
+			span{
+				color:#fff;
+				line-height:measure(120px);
+			}
+			input{	
+				position:absolute;
+				top:0;
+				left:0;
+				width:100%;
+				opacity:0.03;
+			}
+		}
+		.content-action{
+			height: measure(160px);
+			padding-top:measure(130px);
+		}
+		.content-search{
+			text-align:left;
+			padding:measure(80px) 0 0 0;
+			a{
+				display:block;
+				position:relative;
+				left:50%;
+				color:#838383;
+				text-decoration:underline;
+			}
+			.i-ico{
+				width:0.8rem;
+				height:1rem;
+				padding-right:0.6rem;
+			}
+		}
+	}
+}
+
+.p-submitsuccess{
+	@include bg;
+	@include bgm('../images/86_indexb1.jpg');
+	.qrcode{
+		height:100%;
+		background-color:rgba(0,0,0,0.8);
+		.qrcode-head{
+			width:measure(890px);
+			padding-top:measure(240px);
+			margin:0 auto;
+			img{
+				display:block;
+				width:100%;
+			}
+		}
+		.qrcode-img{
+			@include ma;
+			width:measure(530px);
+			height:measure(530px);
+			border:1px #fff solid;
+			padding:measure(10px);
+			margin-top:measure(100px);
+			margin-bottom:measure(50px);
+			img{
+				width:100%;
+			}
+		}
+		p{
+			color:#fff;
+			text-align:center;
+			padding:measure(10px) 0;
+		}
+		.qrcode-share{
+			a,
+			button{
+				border:none;
+				background:transparent;
+				display:inline-block;
+				width:measure(390px);
+				height:measure(160px);
+			}
+			.backindex{
+				@include bg;
+				@include bgm('../images/86_submit_bak.png');
+				margin-right:measure(20px);
+			}
+			.sharenow{
+				@include bg;
+				@include bgm('../images/86_submit_share.png');
+			}
+		}
+	}
+	.share{
+		position:fixed;
+		top:0;
+		left:0;
+		width:100%;
+		height:100%;
+		z-index:102;
+		background-color:rgba(0,0,0,0.8);
+		@include bgct;
+		@include bgm('../images/86_submit_sharebg.png');
+	}
+}
+
+
+

@@ -1,0 +1,141 @@
+/*
+* 历史页面
+*/
+.p-history{
+    background:#303030;
+    img{
+        width:100%;
+    }
+    .history-icoup{
+        display:inline-block;
+        position:absolute;
+        z-index:1;
+        left:50%;
+        margin-left:measure(-46px);
+        width:measure(92px);
+        bottom:measure(105px);
+    }
+    .history-a{
+    	@include bg;
+    	@include bgm('../images/86_history_1.jpg');
+        position:relative;
+    }
+    .history-b{
+    	@include bg;
+    	@include bgm('../images/86_history_2.jpg');
+    	position:relative;
+        box-sizing:border-box;
+    	padding-top:measure(360px);
+        .b-videocontent{
+            position:relative;
+            width:100%;
+            height:measure(930px);
+            #toyotavideo{
+                width:100%;
+                height:100%;
+            }
+            .content-mask{
+                position:absolute;
+                top:0;
+                left:0;
+                width:100%;
+                height:100%;
+                @include bg;
+                @include bgm('../images/86_history_2man.jpg');
+                box-sizing:border-box;
+                padding-top:measure(740px);
+                p{
+                    color:#fff;
+                    text-indent:1rem;
+                    line-height:1.6rem;
+                    &.title{
+                        font-size:1.2rem;
+                        font-weight:bold;
+                    }
+                }
+                .video-icon{
+                    position:absolute;
+                    top:50%;
+                    left:50%;
+                    margin-top:measure(-140px);
+                    margin-left:measure(-140px);
+                    width:measure(280px);
+                    height:measure(280px);
+                    @include bgct;
+                    @include bgm('../images/86_history_play.png');
+                }
+            }
+        }
+    }
+    .history-c{
+        @include bgm('../images/86_history_3.jpg');
+        background-repeat:no-repeat;
+        background-position:center top;
+        background-size:100%;
+        position:relative;
+        &>div{
+            position:absolute;
+            color:#fff;
+            @include bgm('../images/86_history_circle.png');
+            background-repeat:no-repeat;
+            background-size:measure(74px);
+            h3{
+                font-size:1.4rem;
+            }
+            p{
+                font-size:0.8rem;
+            }
+            opacity:0;
+            @include transition(opacity $duration);
+            &.active{
+                opacity:1;
+            }
+        }
+        .c-a{
+            padding-right:measure(100px);
+            background-position:top measure(25px) right;
+            top:measure(160px);
+            right:measure(500px);
+            text-align:right;
+        }
+        .c-b{
+            padding-right:measure(100px);
+            background-position:top right;
+            top:measure(570px);
+            right:measure(630px);
+            text-align:right;
+        }
+        .c-c{
+            padding-left:measure(100px);
+            background-position:top left;
+            top:measure(930px);
+            left:measure(670px);
+            text-align:left;
+        }
+        .c-d{
+            padding-left:measure(100px);
+            background-position:top left;
+            text-align:left;
+            top:measure(1135px);
+            left:measure(350px);
+        }
+        .c-e{
+            padding-left:measure(100px);
+            background-position:top left;
+            text-align:left;
+            top:measure(1400px);
+            left:measure(250px);
+        }
+        .c-vector{
+            display:inline-block;
+            width:measure(330px);
+            height:measure(160px);
+            position:absolute;
+            right:measure(50px);
+            bottom:measure(90px);
+            img{
+                width:100%;
+            }
+        }
+    }
+}

@@ -1,0 +1,40 @@
+.p-loading{
+    @include bg;
+    @include bgm('../images/86_loadingbg.jpg');
+    .loading-content{
+    	padding-top:55%;
+    	width:measure(800px);
+    	@include ma;
+    	.con-ico{
+            width:90%;
+            position:relative;
+            left:-40%;
+    		img{
+    			width:100%;
+    		}
+    	}
+    	.con-bottom{
+    		height:measure(70px);
+    		background-size:measure(800px);
+            background-repeat:no-repeat;
+            background-position:left center; 
+    		@include bgm('../images/86_loadingbottom.png')
+    		.con-top{
+    			height:100%;
+                width:0%;
+    			background-size:measure(800px);
+                background-repeat:no-repeat;
+                background-position:left center; 
+    			@include bgm('../images/86_loadingtop.png')
+    		}
+    	}
+        .con-number{
+            text-align:center;
+            line-height:3rem;
+            font-size:1.2rem;
+        }
+    }
+}
+
+
+

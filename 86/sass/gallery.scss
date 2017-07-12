@@ -1,0 +1,92 @@
+.p-gallery{
+    background-color:#151515;
+    position:relative;
+    .gallery-container{
+    	padding-top: measure(225px);
+        width:100%;
+        overflow:hidden;
+        .container-content{
+            position:relative;
+            left:0px;
+            width:measure(8950px);
+            padding-left:measure(40px);
+            section{
+                display:inline-block;
+                width:measure(970px);
+                margin-right:measure(10px);
+                img{
+                    display:inline-block;
+                }   
+            }
+            section:nth-child(odd){ 
+                img:nth-child(1){
+                    width:100%;
+                }
+                img:nth-child(2){
+                    width:measure(470px);
+                    margin-right:measure(10px);
+                }
+                img:nth-child(3){
+                    width:measure(470px);
+                }
+            }
+            section:nth-child(even){
+                img:nth-child(1){
+                    width:measure(470px);
+                    margin-right:measure(10px);
+                }
+                img:nth-child(2){
+                    width:measure(470px);
+                }
+                img:nth-child(3){
+                    width:100%;
+                }
+            }
+            .imglast{
+                position:relative;
+                right:measure(-8px);
+            }
+        }
+    }
+    .gallery-progress{
+    	width:80%;
+        margin-top:measure(200px);
+        margin-left:auto;
+        margin-right:auto;
+    	height:measure(80px);
+    	background-color:#282828;
+    	border-radius: measure(40px);
+    	.progress-bar{
+    		display:block;
+    		width:0%;
+    		height:100%;
+    		border-radius: measure(40px);
+    		background-color:#d1d1d1;
+
+    		.bar-sphere{
+    			display:inline-block;
+    			width:measure(130px);
+    			height:measure(130px);
+    			float:right;
+    			background:#fff;
+    			border-radius:measure(130px);
+    			position:relative;
+    			top:measure(-25px);
+    			right:measure(-65px);
+    		}
+    	}
+    }
+    .m-preview .preview-text{
+        h3{
+            max-width:measure(670px);
+            font-size:1.4rem;
+            margin:0 auto measure(40px) auto;
+            line-height:2rem;
+        }
+        p{
+            font-size:0.8rem;
+            line-height:1.5rem;
+            margin:0 auto;
+        }
+    }
+}

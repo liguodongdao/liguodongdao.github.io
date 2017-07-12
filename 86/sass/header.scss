@@ -1,0 +1,128 @@
+/*页面主题样式*/
+a:link,
+a:visited{
+    color:#282828;
+}
+a:hover,
+a:active{
+    color:#282828;
+}
+
+/*重置placeholder样式*/
+::-webkit-input-placeholder { /* WebKit browsers */ 
+color: #fff;
+text-align:center; 
+} 
+:-moz-placeholder { /* Mozilla Firefox 4 to 18 */ 
+color: #fff;
+text-align:center; 
+} 
+::-moz-placeholder { /* Mozilla Firefox 19+ */ 
+color: #fff;
+text-align:center; 
+} 
+:-ms-input-placeholder { /* Internet Explorer 10+ */ 
+color: #fff;
+text-align:center; 
+}
+
+/*icon字体样式*/
+/*
+@font-face{
+    font-family:'fonticon';
+    src:url('./font/fonticon.woff') format('woff'); 
+}
+@font-face{
+    font-family:fonticon;
+    src:url(//at.alicdn.com/t/font_1433401008_2229297.woff) format('woff'),
+    url(//at.alicdn.com/t/font_1433401008_2229297.ttf) format('truetype'),
+    url(//at.alicdn.com/t/font_1433401008_2229297.svg#iconfont) format('svg')
+}
+*/
+
+html,
+body{
+    height:100%;
+    background:#000;
+}
+body{
+    box-sizing:border-box;
+    max-width:1024px;
+    margin:0 auto;
+    position:relative;
+    font-family:Microsoft YaHei;
+    padding-top:measure(168px);
+}
+header{
+    position:fixed;
+    width:100%;
+    height:measure(168px);
+    background:#e6e6e6;
+    z-index:101;
+    padding:0;
+    top:0;
+    left:0;
+    h1{
+        padding:measure(36px) measure(50px);
+        float:left;
+        width:measure(430px);
+        img{
+            width:100%;
+        }
+    }
+    .navtoggle{
+        display:block;
+        float:right;
+        width:measure(70px);
+        padding:measure(50px) measure(50px);
+        @include transition(transform 0.35s);
+        img{
+            width:100%;
+        }
+        &.active{
+            transform:rotateZ(90deg);
+        }
+    }
+    nav{
+        position:absolute;
+        left:0;
+        top:measure(168px);
+        width:100%;
+        background:#ededed;
+        padding:measure(60px) measure(110px);
+        box-sizing:border-box;
+        //height:measure(1330px);
+        display:none;
+        p{
+            line-height:measure(140px);
+            border-bottom:1px #a0a0a0 solid;
+            text-align:center;
+            &:last-child{
+                border-bottom:none;
+            }
+            a{
+                display:block;
+                width:100%;
+                height:100%;
+                font-weight:bold;
+            }
+        }
+    }
+}
+body>section{
+    width:100%;
+    height:100%;
+}
+
+.m-icoup{
+    display:inline-block;
+    position:absolute;
+    z-index:1;
+    left:50%;
+    margin-left:measure(-46px);
+    width:measure(92px);
+    bottom:measure(105px);
+}
+
+
+

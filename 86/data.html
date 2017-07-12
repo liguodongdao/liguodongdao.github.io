@@ -1,0 +1,438 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-touch-fullscreen" content="yes">
+    <meta content="telephone=no,email=no" name="format-detection">
+    <meta content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no" name="viewport">
+    <meta content="black" name="apple-mobile-web-app-status-bar-style">
+    <meta name="msapplication-tap-highlight" content="no">
+    <meta name="wap-font-scale" content="no">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <link rel="stylesheet" type="text/css" href="./styles/main.css">
+    <title>丰田86</title>
+  </head>
+  <body>
+    <header>
+        <h1><a href="./index.html"><img src="images/86_logo.png"></a></h1>
+        <span class="navtoggle"><img src="images/86_nav.png"></span>
+         <nav>
+            <p><a href="./history.html">86历史</a></p>
+            <p><a href="./power.html">动力与操控</a></p>
+            <p><a href="./appearance.html">外观</a></p>
+            <p><a href="./interior.html">内饰</a></p>
+            <p><a href="./safety.html">安全</a></p>
+            <p><a href="./gallery.html">图库</a></p>
+            <p><a href="./submit.html">预约赏车</a></p>
+            <p><a href="./search.html">查询经销商</a></p>
+        </nav>
+    </header>
+    <!--详细配置页面-->
+    <section class="p-data" id="cardata">
+        <p class="data-type">
+            <span>{{info.level}}</span>
+            <select v-model="carType">
+                <option value="a">精英手动版</option>
+                <option value="b">豪华手动版</option>
+                <option value="c">精英自动版</option>
+                <option value="d">豪华自动版</option>
+            </select>
+        </p>
+        <div class="content">
+            <p class="content-head">
+                <span class="head-switch" v-bind:class="{'active':state.tablea}" v-on:tap="toggle(0)">规格表</span>
+                <span class="head-switch" v-bind:class="{'active':state.tableb}" v-on:tap="toggle(1)">配置表</span>
+                <span class="head-price">
+                    建议零售价<br>
+                    RMB&nbsp;&nbsp;<b>{{info.price}}</b>
+                </span>
+            </p>
+            <!--基本信息-->
+            <!--
+            <table>
+                <thead></thead>
+                <tbody>
+                    <tr>
+                        <td rowspan="3">级别</td>
+                        <td>{{info.type}}</td>
+                    </tr>
+                    <tr>
+                        <td>{{info.level}}</td>
+                    </tr>
+                    <tr>
+                        <td>{{info.SFX}}</td>
+                    </tr>
+                </tbody>
+            </table>
+            -->
+            <!--规格表-->
+            <table v-show="state.tablea" class="first">
+                <thead>
+                    <tr>
+                        <th colspan="2">尺寸及质量</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>{{info.normals.a1.name}}</td>
+                        <td>{{info.normals.a1.value}}</td>
+                    </tr>
+                    <tr>
+                        <td>{{info.normals.a2.name}}</td>
+                        <td>{{info.normals.a2.value}}</td>
+                    </tr>
+                    <tr>
+                        <td>{{info.normals.a3.name}}</td>
+                        <td>{{info.normals.a3.value}}</td>
+                    </tr>
+                    <tr>
+                        <td>{{info.normals.a4.name}}</td>
+                        <td>{{info.normals.a4.value}}</td>
+                    </tr>
+                    <tr>
+                        <td>{{info.normals.a5.name}}</td>
+                        <td>{{info.normals.a5.value}}</td>
+                    </tr>
+                    <tr>
+                        <td>{{info.normals.a6.name}}</td>
+                        <td>{{info.normals.a6.value}}</td>
+                    </tr>
+                    <tr>
+                        <td>{{info.normals.a7.name}}</td>
+                        <td>{{info.normals.a7.value}}</td>
+                    </tr>
+                    <tr>
+                        <td>{{info.normals.a8.name}}</td>
+                        <td>{{info.normals.a8.value}}</td>
+                    </tr>
+                    <tr>
+                        <td>{{info.normals.a9.name}}</td>
+                        <td>{{info.normals.a9.value}}</td>
+                    </tr>
+                </tbody>
+            </table>
+            <table v-show="state.tablea">
+                <thead>
+                    <tr>
+                        <th colspan="2">发动机</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>{{info.normals.b1.name}}</td>
+                        <td>{{info.normals.b1.value}}</td>
+                    </tr>
+                    <tr>
+                        <td>{{info.normals.b2.name}}</td>
+                        <td>{{info.normals.b2.value}}</td>
+                    </tr>
+                    <tr>
+                        <td>{{info.normals.b3.name}}</td>
+                        <td>{{info.normals.b3.value}}</td>
+                    </tr>
+                    <tr>
+                        <td>{{info.normals.b4.name}}</td>
+                        <td>{{info.normals.b4.value}}</td>
+                    </tr>
+                    <tr>
+                        <td>{{info.normals.b5.name}}</td>
+                        <td>{{info.normals.b5.value}}</td>
+                    </tr>
+                    <tr>
+                        <td>{{info.normals.b6.name}}</td>
+                        <td>{{info.normals.b6.value}}</td>
+                    </tr>
+                    <tr>
+                        <td>{{info.normals.b7.name}}</td>
+                        <td>{{info.normals.b7.value}}</td>
+                    </tr>
+                    <tr>
+                        <td>{{info.normals.b8.name}}</td>
+                        <td>{{info.normals.b8.value}}</td>
+                    </tr>
+                    <tr>
+                        <td>{{info.normals.b9.name}}</td>
+                        <td>{{info.normals.b9.value}}</td>
+                    </tr>
+                </tbody>
+            </table>
+            <table v-show="state.tablea">
+                <thead>
+                    <tr>
+                        <th colspan="2">制动、悬架、驱动方式</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>{{info.normals.c1.name}}</td>
+                        <td>{{info.normals.c1.value}}</td>
+                    </tr>
+                    <tr>
+                        <td>{{info.normals.c2.name}}</td>
+                        <td>{{info.normals.c2.value}}</td>
+                    </tr>
+                    <tr>
+                        <td>{{info.normals.c3.name}}</td>
+                        <td>{{info.normals.c3.value}}</td>
+                    </tr>
+                    <tr>
+                        <td>{{info.normals.c4.name}}</td>
+                        <td>{{info.normals.c4.value}}</td>
+                    </tr>
+                </tbody>
+            </table>
+            <!--配置表-->
+            <table v-show="state.tableb" class="first">
+                <thead>
+                    <tr>
+                        <th colspan="3">外观</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td colspan="2">{{info.config.a1.name}}</td>
+                        <td>{{info.config.a1.value}}</td>
+                    </tr>
+                    <tr>
+                        <td colspan="2">{{info.config.a2.name}}</td>
+                        <td>{{info.config.a2.value}}</td>
+                    </tr>
+                    <tr>
+                        <td colspan="2">{{info.config.a3.name}}</td>
+                        <td>{{info.config.a3.value}}</td>
+                    </tr>
+                    <tr>
+                        <td colspan="2">{{info.config.a4.name}}</td>
+                        <td>{{info.config.a4.value}}</td>
+                    </tr>
+                    <tr>
+                        <td colspan="2">{{info.config.a5.name}}</td>
+                        <td>{{info.config.a5.value}}</td>
+                    </tr>
+                    <tr>
+                        <td colspan="2">{{info.config.a6.name}}</td>
+                        <td>{{info.config.a6.value}}</td>
+                    </tr>
+                    <tr>
+                        <td colspan="2">{{info.config.a7.name}}</td>
+                        <td>{{info.config.a7.value}}</td>
+                    </tr>
+                    <tr>
+                        <td colspan="2">{{info.config.a8.name}}</td>
+                        <td>{{info.config.a8.value}}</td>
+                    </tr>
+                </tbody>
+            </table>
+            <table v-show="state.tableb">
+                <thead>
+                    <tr>
+                        <th colspan="3">内饰</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td colspan="2">{{info.config.b1.name}}</td>
+                        <td>{{info.config.b1.value}}</td>
+                    </tr>
+                    <tr>
+                        <td colspan="2">{{info.config.b2.name}}</td>
+                        <td>{{info.config.b2.value}}</td>
+                    </tr>
+                    <tr>
+                        <td colspan="2">{{info.config.b3.name}}</td>
+                        <td>{{info.config.b3.value}}</td>
+                    </tr>
+                    <tr>
+                        <td colspan="2">{{info.config.b4.name}}</td>
+                        <td>{{info.config.b4.value}}</td>
+                    </tr>
+                    <tr>
+                        <td rowspan="3">{{info.config.b5.name}}</td>
+                        <td style="text-indent:1rem">{{info.config.b6.name}}</td>
+                        <td>{{info.config.b6.value}}</td>
+                    </tr>
+                    <tr>
+                        <td>{{info.config.b7.name}}</td>
+                        <td>{{info.config.b7.value}}</td>
+                    </tr>
+                    <tr>
+                        <td>{{info.config.b8.name}}</td>
+                        <td>{{info.config.b8.value}}</td>
+                    </tr>
+                    <tr>
+                        <td colspan="2">{{info.config.b9.name}}</td>
+                        <td>{{info.config.b9.value}}</td>
+                    </tr>
+                    <tr>
+                        <td colspan="2">{{info.config.b10.name}}</td>
+                        <td>{{info.config.b10.value}}</td>
+                    </tr>
+                    <tr>
+                        <td colspan="2">{{info.config.b11.name}}</td>
+                        <td>{{info.config.b11.value}}</td>
+                    </tr>
+                    <tr>
+                        <td colspan="2">{{info.config.b12.name}}</td>
+                        <td>{{info.config.b12.value}}</td>
+                    </tr>
+                    <tr>
+                        <td colspan="2">{{info.config.b13.name}}</td>
+                        <td>{{info.config.b13.value}}</td>
+                    </tr>
+                    <tr>
+                        <td colspan="2">{{info.config.b14.name}}</td>
+                        <td>{{info.config.b14.value}}</td>
+                    </tr>
+                    <tr>
+                        <td colspan="2">{{info.config.b15.name}}</td>
+                        <td>{{info.config.b15.value}}</td>
+                    </tr>
+                    <tr>
+                        <td colspan="2">{{info.config.b16.name}}</td>
+                        <td>{{info.config.b16.value}}</td>
+                    </tr>
+                </tbody>
+            </table>
+            <table v-show="state.tableb">
+                <thead>
+                    <tr>
+                        <th colspan="3">座椅</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td colspan="2">{{info.config.c1.name}}</td>
+                        <td>{{info.config.c1.value}}</td>
+                    </tr>
+                    <tr>
+                        <td colspan="2">{{info.config.c2.name}}</td>
+                        <td>{{info.config.c2.value}}</td>
+                    </tr>
+                    <tr>
+                        <td colspan="2">{{info.config.c3.name}}</td>
+                        <td>{{info.config.c3.value}}</td>
+                    </tr>
+                    <tr>
+                        <td colspan="2">{{info.config.c4.name}}</td>
+                        <td>{{info.config.c4.value}}</td>
+                    </tr>
+                    <tr>
+                        <td colspan="2">{{info.config.c5.name}}</td>
+                        <td>{{info.config.c5.value}}</td>
+                    </tr>
+                    <tr>
+                        <td colspan="2">{{info.config.c6.name}}</td>
+                        <td>{{info.config.c6.value}}</td>
+                    </tr>
+                    <tr>
+                        <td colspan="2">{{info.config.c7.name}}</td>
+                        <td>{{info.config.c7.value}}</td>
+                    </tr>
+                </tbody>
+            </table>
+            <table v-show="state.tableb">
+                <thead>
+                    <tr>
+                        <th colspan="3">安全•操控装置</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td colspan="2">{{info.config.d1.name}}</td>
+                        <td>{{info.config.d1.value}}</td>
+                    </tr>
+                    <tr>
+                        <td colspan="2">{{info.config.d2.name}}</td>
+                        <td>{{info.config.d2.value}}</td>
+                    </tr>
+                    <tr>
+                        <td colspan="2">{{info.config.d3.name}}</td>
+                        <td>{{info.config.d3.value}}</td>
+                    </tr>
+                    <tr>
+                        <td colspan="2">{{info.config.d4.name}}</td>
+                        <td>{{info.config.d4.value}}</td>
+                    </tr>
+                    <tr>
+                        <td colspan="2">{{info.config.d5.name}}</td>
+                        <td>{{info.config.d5.value}}</td>
+                    </tr>
+                    <tr>
+                        <td colspan="2">{{info.config.d6.name}}</td>
+                        <td>{{info.config.d6.value}}</td>
+                    </tr>
+                    <tr>
+                        <td colspan="2">{{info.config.d7.name}}</td>
+                        <td>{{info.config.d7.value}}</td>
+                    </tr>
+                    <tr>
+                        <td colspan="2">{{info.config.d8.name}}</td>
+                        <td>{{info.config.d8.value}}</td>
+                    </tr>
+                    <tr>
+                        <td colspan="2">{{info.config.d9.name}}</td>
+                        <td>{{info.config.d9.value}}</td>
+                    </tr>
+                    <tr>
+                        <td colspan="2">{{info.config.d10.name}}</td>
+                        <td>{{info.config.d10.value}}</td>
+                    </tr>
+                    <tr>
+                        <td colspan="2">{{info.config.d11.name}}</td>
+                        <td>{{info.config.d11.value}}</td>
+                    </tr>
+                    <tr>
+                        <td colspan="2">{{info.config.d12.name}}</td>
+                        <td>{{info.config.d12.value}}</td>
+                    </tr>
+                </tbody>
+            </table>
+            <table v-show="state.tableb">
+                <thead>
+                    <tr>
+                        <th colspan="3">空调•音响及电子导航系统</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td colspan="2">{{info.config.e1.name}}</td>
+                        <td>{{info.config.e1.value}}</td>
+                    </tr>
+                    <tr>
+                        <td colspan="2">{{info.config.e2.name}}</td>
+                        <td>{{info.config.e2.value}}</td>
+                    </tr>
+                    <tr>
+                        <td colspan="2">{{info.config.e3.name}}</td>
+                        <td>{{info.config.e3.value}}</td>
+                    </tr>
+                </tbody>
+            </table>
+            <!--说明部分-->
+            <div class="content-intruduction">
+                <section v-show="state.tablea">
+                    <p>*1 注释:车身高度含天线</p>
+                    <p>**2 注释:DOHC-双顶置凸轮轴</p>
+                </section>
+                <section v-show="state.tableb">
+                    <p>*1 注释:座椅材质-仅指座椅与乘客人体接触的主要部分的材料</p>
+                    <p>●:表示有此配备   _:表示无此配备</p>
+                </section>
+                <p>声明:</p>
+                <p>■本产品样本的全部内容请以实车为准,如有疑问请致电一汽丰田顾客服务中心(800-810-1210/400-810-1210)。</p>
+                <p>■根据市场需求的变化或生产计划的调整,丰田汽车(中国)投资有限公司可能对型号、规格、配备、车身颜色进行更改、如您有疑问请致电丰田顾客服务中心或联系一汽丰田当地经销商</p>
+                <p>■ “&nbsp;<span class="i-ico"><img src="./images/ico/86_i_ico.png"></span>&nbsp;”、“TOYOTA”、“丰田”是日本丰田汽车公司的商标。</p>
+                <p>■ 受显示器影响，本产品样本中刊载的照片可能与您看到的实际车身颜色不完全一致，请以实际车体为准，如您有疑问请致电丰田顾客服务中心或联系一汽丰田当地经销商。</p>
+            </div>
+        </div>
+    </section>
+    <script type="text/javascript" src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+    <script type="text/javascript" src="./scripts/lib/zepto.js"></script>
+    <script type="text/javascript" src="./scripts/lib/vue.js"></script>
+    <script type="text/javascript" src="./scripts/common.js"></script>
+    <script type="text/javascript" src="./scripts/pagedata.js"></script>
+    <script type="text/javascript" src="./scripts/wxshare.js"></script>
+  </body>
+</html>

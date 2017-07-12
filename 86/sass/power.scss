@@ -1,0 +1,200 @@
+.p-power{
+	background-color:#000;
+	overflow:hidden;
+	position:relative;
+	.power-ani{
+		position:absolute;
+		width:100%;
+		height:100%;
+		top:0px;
+		left:0px;
+		background-color:rgba(0,0,0,0.9);
+		z-index:2;
+		div>img{
+			width:100%;
+		}
+		&>div{
+			opacity:0;
+			@include transition(opacity $duration);
+			&.active{
+				opacity:1;
+			}
+		}
+		.ani-a{
+			position:absolute;
+			top:0;
+			left:0;
+			width:100%;
+			height:100%;
+			@include bgct;
+			@include bgm('../images/86_power_an1.png');
+			background-position:right bottom;
+		}
+		.ani-b{
+			position:absolute;
+			top:0;
+			left:0;
+			width:100%;
+			height:100%;
+			@include bgct;
+			@include bgm('../images/86_power_an2.png');
+			background-position:right bottom;
+		}
+		.ani-c{
+			position:absolute;
+			width:measure(730px);
+			height:measure(783px);
+			@include bgct;
+			@include bgm('../images/86_power_an3.png');
+		}	
+	}
+	.power-pagea{
+		@include bg;
+		@include bgm('../images/86_powerbg1.jpg');
+		position:relative;
+		.pagea-container{
+			color:#fff;
+			text-align:center;
+			position:relative;
+			top:measure(30px);
+			section{
+				display:none;
+				width:measure(260px);
+				height:measure(615px);
+				position:absolute;
+			}
+			.container-a{
+				background:url(../images/86_power_i1.png) no-repeat left bottom;
+				background-size:measure(90px) 100%;
+				left:measure(194px);
+				top:measure(624px);
+			}
+			.container-b{
+				background:url(../images/86_power_i2.png) no-repeat left bottom;
+				background-size:measure(90px) 100%;
+				left:measure(568px);
+				top:measure(514px);
+			}
+			.container-c{
+				background:url(../images/86_power_i3.png) no-repeat left bottom;
+				background-size:measure(90px) 100%;
+				left:measure(910px);
+				top:measure(594px);
+			}
+		}
+		.pagea-detail{
+			position:absolute;
+			width:measure(280px);
+			height:measure(80px);
+			bottom:measure(135px);
+			right:measure(50px);
+			@include bgct;
+			@include bgm('../images/86_power_detail.png');
+		}
+	}
+	.power-pagec{
+		@include bg;
+		@include bgm('../images/86_powerbg3.jpg');
+		position:relative;
+		box-sizing:border-box;
+		padding-top:measure(500px);
+		.pagec-container{
+			width:100%;
+			height:measure(1200px);
+			position:relative;
+			overflow:hidden;
+			.pagec-circle{
+				position:absolute;
+				width:100%;
+				height:20px;
+				text-align:center;
+				top:measure(700px);
+				span{
+					display:inline-block;
+					border:2px #fff solid;
+					width:6px;
+					height:6px;
+					border-radius:6px;
+					&.active{
+						background:#fff;
+					}
+					margin:0 4px;
+				}
+			}
+			.pagec-wrapper{
+				position:relative;
+			}
+			.pagec-tap{
+				.tap-left{
+					position:absolute;
+					left:measure(50px);
+					top:measure(310px);
+					width:measure(100px);
+					height:measure(155px);
+					padding:measure(20px);
+					background:url('../images/86_power_left.png') no-repeat center center;
+					background-size: measure(100px) measure(155px);
+				}
+				.tap-right{
+					position:absolute;
+					right:measure(50px);
+					top:measure(310px);
+					width:measure(100px);
+					height:measure(155px);
+					padding:measure(20px);
+					background:url('../images/86_power_right.png') no-repeat center center;
+					background-size: measure(100px) measure(155px);
+				}
+			}
+			section{
+				display:block;
+				float:left;
+				.wrapper-img{
+					width:100%;
+					height:measure(780px);
+					img{
+						display:block;
+						max-width:100%;
+						max-height:100%;
+					}
+				}
+				p{
+					text-align:center;
+					color:#fff;
+					line-height:1.5rem;
+					padding:0 measure(150px);
+				}
+			}
+		}
+		.pagec-vector{
+			display:inline-block;
+			position:absolute;
+			width:measure(330px);
+			height:measure(160px);
+			bottom:measure(80px);
+			right:measure(50px);
+			img{
+				width:100%;
+			}
+		}
+	}
+	.power-data{
+		position:absolute;
+		display:none;
+		top:0;
+		left:0;
+		width:100%;
+		height:100%;
+		background-color:#222;
+		@include bgm('../images/86_powerbg2.jpg');
+		background-position:center top;
+		background-repeat:no-repeat;
+		background-size:100%;
+		box-sizing:border-box;
+		padding-top:measure(145px);
+		a{
+			display:block;
+			height:measure(310px);
+		}
+	}
+}

@@ -1,0 +1,42 @@
+/*
+根据rem实现页面自适应
+*/
+//基本变量定义
+$minSize:12.0;
+$psd_width:1242px;      //psd图的宽度
+$psd_height:2208;       //psd图的高度
+
+
+// 媒体查询
+// 320px    基础字体rem大小是12px 
+// 其他宽度 等比扩大基础字体
+@for $i from 320 through 1080 {
+    @if $i%10==0 {
+        @if $i==320 {
+            @media screen and(max-width: $i*1px) {
+                html {
+                    font-size: $i / 320.0 * $minSize * 1px;
+                }
+            }
+        }
+        @else if $i==1080 {
+            @media screen and(min-width: ($i - 9)*1px) {
+                html {
+                    font-size: $i / 320.0 * $minSize * 1px;
+                }
+            }
+        }
+        @else {
+            @media screen and(min-width: ($i - 9)*1px) and (max-width: $i*1px) {
+                html {
+                    font-size: $i / 320.0 * $minSize * 1px
+                }
+            }
+        }
+    }
+}
+//根据psd图计算出rem单位
+//计算出 $n 和当前基础字体大小的倍数关系 计算出rem
+@function measure($n) {
+    @return $n/($psd_width/320.0 *$minSize)* 1rem;
+}

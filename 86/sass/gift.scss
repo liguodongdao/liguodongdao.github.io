@@ -1,0 +1,329 @@
+.p-gift{
+	color:#fff;
+	background:url(../images/gift/86_gift_bgnormal.jpg) repeat;
+	position:relative;
+	.gift-mask{
+		position:fixed;
+		top:measure(168px);
+		z-index:10;
+		left:0;
+		width:100%;
+		height:100%;
+		background:url(../images/gift/86_gift_b1.jpg) no-repeat center top;
+		background-size:100%;
+		background-color:#161616;
+		&.active{
+			@include bgm('../images/gift/86_gift_b2.jpg');
+		}
+		.giftbutton{
+			position:absolute;
+			display:inline-block;
+			width:measure(300px);
+			height:measure(300px);
+			top:measure(1000px);
+			left:measure(480px);
+		}
+	}
+	.gift-interlude{
+		position:fixed;
+		top:measure(168px);
+		z-index:9;
+		left:0;
+		width:100%;
+		height:100%;
+		background:url(../images/gift/86_gift_interludea.jpg) no-repeat center top;
+		background-size:100%;
+		background-color:#000;
+		.interlude-car{
+			display:block;
+			width:100%;
+			margin-bottom:measure(100px);
+			opacity:0;
+		}
+		.interlude-text{
+			opacity:0;
+			display:block;
+			width:measure(520px);
+			margin-left:auto;
+			margin-right:auto;
+		}
+	}
+	.gift-header{
+		height:measure(2080px);
+		background:url(../images/gift/86_gift_bg2.jpg);
+		@include bgct;
+		&.active{
+			background-image:url(../images/gift/86_gift_bg3.jpg);
+		}
+		.header-content{
+			padding-top:measure(1140px);
+			text-align:center;
+			font-size:1.1rem;
+			p{
+				span{
+					display:inline-block;
+					padding-right:measure(10px);
+					img{
+						display:block;
+						width:measure(50px);
+					}
+				}
+				line-height:2rem;
+				padding-bottom:measure(40px);
+				b{
+					color:#fd9501;
+					padding:0 measure(20px);
+				}
+			}
+		}
+	}
+	.gift-section{
+		@include clearfloat;
+		margin:0 measure(50px) measure(70px) measure(50px);
+		.shuzhi-text{
+			width:100%;
+			height:measure(200px);
+			box-sizing:border-box;
+			padding:measure(50px) measure(50px) measure(30px) measure(50px);
+			color:#919191;
+			@include bgct;
+			@include bgm('../images/gift/86_gift_word.png');
+		}
+		img{
+			display:block;
+			max-width:100%;
+			max-height:100%;
+			&.sr{
+				box-shadow:7px 7px 2px rgba(70,70,70,0.63);
+			}
+			&.sl{
+				box-shadow:-7px 7px 2px rgba(70,70,70,0.63);
+			}
+		}
+		.text-left{
+			position:relative;
+			@include bgm('../images/gift/86_gift_linel.png');
+			background-repeat:no-repeat;
+			background-position:center bottom;
+			background-size:100%;
+			text-align:center;
+			p,h2,h3{
+				position:relative;
+				z-index:2;
+			}
+			.text-bg{
+				position:absolute;
+				z-index:1;
+				top:0;
+				left:50%;
+				margin-left:-3rem;
+				font-size:6rem;
+				color:rgba(65,65,65,0.6);
+				text-align:center;
+			}
+		}
+		.text-right{
+			position:relative;
+			@include bgm('../images/gift/86_gift_liner.png');
+			background-repeat:no-repeat;
+			background-position:center bottom;
+			background-size:100%;
+			text-align:center;
+			p,h2,h3{
+				position:relative;
+				z-index:2;
+			}
+			.text-bg{
+				position:absolute;
+				z-index:1;
+				top:0;
+				left:50%;
+				margin-left:-3rem;
+				font-size:6rem;
+				color:rgba(65,65,65,0.6);
+				text-align:center;
+			}
+		}
+		.text-normal{
+			font-size:0.9rem;
+			line-height:1.5rem;
+			p{
+				color:#919191;
+			}
+		}
+		&>div:first-child{
+			float:left;
+			width:48%;
+		}
+		&>div:last-child{
+			float:right;
+			width:48%;
+		}
+		.section-a{
+			height:measure(350px);
+			box-sizing:border-box;
+			padding-top:measure(140px);
+		}
+		.section-b{
+			height:measure(350px);
+			box-sizing:border-box;
+			padding-top:measure(140px);
+		}
+		.section-c{
+			height:measure(350px);
+			box-sizing:border-box;
+			padding-top:measure(140px);
+		}
+		.section-d{
+			height:measure(350px);
+			box-sizing:border-box;
+			padding-top:measure(140px);
+		}
+		.section-e{
+			height:measure(350px);
+			box-sizing:border-box;
+			padding-top:measure(140px);
+		}
+		.section-f{
+			height:measure(350px);
+			box-sizing:border-box;
+			padding-top:measure(140px);
+		}
+		.section-g{
+			height:measure(350px);
+			box-sizing:border-box;
+			padding-top:measure(140px);
+		}
+	}
+	.gift-submit{
+		margin:0 measure(50px);
+		select,
+		input{
+			display:inline-block;
+			width:100%;
+			height:measure(136px);
+			line-height:measure(136px);
+			margin-bottom:measure(30px);
+			border:none;
+			background:#f0f0f0;
+			color:#646464;
+			font-size:0.8rem;
+			text-indent:1rem;
+		}
+		button{
+			display:inline-block;
+			width:100%;
+			height:measure(136px);
+			line-height:measure(136px);
+			border-radius:measure(10px);
+			background-color:#ffba00;
+			color:#fff;
+			border:none;
+			font-size:1.2rem;
+		}
+	}
+	.gift-imga,
+	.gift-imgb{
+		img{
+			display:block;
+			width:100%;
+		}
+	}
+	.gift-imga{
+		padding:measure(110px) 0;
+	}
+	.gift-imgb{
+		padding-top:measure(150px);
+	}
+
+	.gift-tip{
+		font-size:0.8rem;
+		color:#9a9a9a;
+		padding-bottom:measure(120px);
+	}
+
+	::-webkit-input-placeholder { /* WebKit browsers */ 
+		color: #646464;
+		text-align:left;
+		text-indent:1.3rem; 
+	} 
+	:-moz-placeholder { /* Mozilla Firefox 4 to 18 */ 
+		color: #646464;
+	    text-align:left;
+	    text-indent:1.3rem;
+	} 
+	::-moz-placeholder { /* Mozilla Firefox 19+ */ 
+	    color: #646464;
+	    text-align:left;
+	    text-indent:1.3rem; 
+	} 
+	:-ms-input-placeholder { /* Internet Explorer 10+ */ 
+	    color: #646464;
+	    text-align:left;
+	    text-indent:1.3rem;
+	}
+}
+.p-giftsuccess{
+	@include bg;
+	@include bgm('../images/86_indexb1.jpg');
+	.qrcode{
+		height:100%;
+		background-color:rgba(0,0,0,0.8);
+		.qrcode-head{
+			width:measure(890px);
+			padding-top:measure(240px);
+			margin:0 auto;
+			img{
+				display:block;
+				width:100%;
+			}
+		}
+		.qrcode-img{
+			@include ma;
+			width:measure(530px);
+			height:measure(530px);
+			border:1px #fff solid;
+			padding:measure(10px);
+			margin-top:measure(180px);
+			img{
+				width:100%;
+			}
+		}
+		p{
+			color:#fff;
+			text-align:center;
+			padding:measure(10px) 0;
+		}
+		.qrcode-share{
+			a,
+			button{
+				border:none;
+				background:transparent;
+				display:inline-block;
+				width:measure(390px);
+				height:measure(160px);
+			}
+			.backindex{
+				@include bg;
+				@include bgm('../images/86_submit_bak.png');
+				margin-right:measure(20px);
+			}
+			.sharenow{
+				@include bg;
+				@include bgm('../images/86_submit_share.png');
+			}
+		}
+	}
+	.share{
+		position:fixed;
+		top:0;
+		left:0;
+		width:100%;
+		height:100%;
+		z-index:102;
+		background-color:rgba(0,0,0,0.8);
+		@include bgct;
+		@include bgm('../images/86_submit_sharebg.png');
+	}
+}
+

@@ -1,0 +1,142 @@
+%texticon{
+    position:absolute;
+    bottom:0px;
+    left:0px;
+    width:8px;
+    height:8px;
+    border-radius:8px;
+    background:#2d2d2d;
+    margin-left:-4px;
+}
+.p-appearance{
+    @include bg;
+    @include bgm('../images/86_apperance_bg.jpg');
+    position:relative;
+    .appearance-car{
+    	height: measure(840px);
+    	@include bgm('../images/86_apperance_bakcircle.png');
+    	background-size:100%;
+    	background-position:center bottom;
+    	background-repeat:no-repeat;
+        position:relative;
+        .car-text{
+            position:absolute;
+            top:0px;
+            left:0px;
+            width:100%;
+            height:100%;
+            &>p{
+                position:absolute;
+                display:none;
+                font-size:1rem;
+                font-weight:bold;
+                color:#292929;
+                &.active{
+                    display:block;
+                }
+            }
+            .text1{
+                padding-left:measure(30px);
+                height:measure(640px);
+                border-left:1px #2d2d2d solid;
+                left:measure(90px);
+                top:measure(160px);
+                .text-icon{
+                    @extend %texticon;
+                }
+            }
+            .text2{
+                height:measure(430px);
+                border-left:1px #2d2d2d solid;
+                padding-left:measure(30px);
+                left:measure(90px);
+                top:measure(250px);
+                .text-icon{
+                    @extend %texticon;
+                }
+            }
+            .text3{
+                height:measure(430px);
+                border-right:1px #2d2d2d solid;
+                padding-right:measure(44px);
+                top:measure(250px);
+                right:measure(95px);
+                text-align:right;
+                .text-icon{
+                    position:absolute;
+                    bottom:0px;
+                    right:0px;
+                    width:8px;
+                    height:8px;
+                    border-radius:8px;
+                    background:#2d2d2d;
+                    margin-right:-5px;
+                }
+            }
+        }
+        .car-show{
+            position:relative;
+            top:measure(400px);
+            &>div{
+                position:absolute;
+                top:0;
+                left:0;
+                width:100%;
+                height:100%;
+                display:none;
+                img{
+                    width:100%;
+                }
+                &.active{
+                    display:block;
+                }
+            }
+        }
+        .car-toggle{
+            position:absolute;
+            top: measure(76px);
+            right: measure(53px);
+            &>span{
+                display:inline-block;
+                width:measure(60px);
+                height:measure(60px);
+                @include bgct;
+            }
+            .toggle-a{
+                @include bgm('../images/86_apperance_tg1.png');
+                margin-right:measure(20px);
+            }
+            .toggle-b{
+                @include bgm('../images/86_apperance_tg2.png');
+            }
+        }
+    }
+    .appearance-text{
+    	padding-top:measure(175px);
+    	img{
+    		display:block;
+    		width:80%;
+    		margin-left:auto;
+    		margin-right:auto;
+    	}
+    }
+    .appearance-slide{
+        display:none;
+    	img{
+    		display:block;
+    		width:100%;
+    		padding-top:measure(100px);
+    	}
+    }
+    .appearance-next{
+        width:measure(330px);
+        height:measure(160px);
+        display:block;
+        position:absolute;
+        bottom:measure(90px);
+        right:measure(50px);
+        img{
+            width:100%;
+        }
+    }
+}

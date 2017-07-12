@@ -1,0 +1,84 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-touch-fullscreen" content="yes">
+    <meta content="telephone=no,email=no" name="format-detection">
+    <meta content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no" name="viewport">
+    <meta content="black" name="apple-mobile-web-app-status-bar-style">
+    <meta name="msapplication-tap-highlight" content="no">
+    <meta name="wap-font-scale" content="no">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <link rel="stylesheet" type="text/css" href="./styles/main.css">
+    <title>丰田86</title>
+  </head>
+  <body>
+    <header>
+        <h1><a href="./index.html"><img src="images/86_logo.png"></a></h1>
+        <span class="navtoggle"><img src="images/86_nav.png"></span>
+         <nav>
+            <p><a href="./history.html">86历史</a></p>
+            <p><a href="./power.html">动力与操控</a></p>
+            <p><a href="./appearance.html">外观</a></p>
+            <p><a href="./interior.html">内饰</a></p>
+            <p><a href="./safety.html">安全</a></p>
+            <p><a href="./gallery.html">图库</a></p>
+            <p><a href="./submit.html">预约赏车</a></p>
+            <p><a href="./search.html">查询经销商</a></p>
+        </nav>
+    </header>
+    <!--查询经销商页面-->
+    <section class="p-search">
+        <div class="search-select">
+            <p class="select-row">
+                <span class="row-item">
+                    <select>
+                        <option value="北京">北京</option>
+                    </select>
+                </span>
+                <span class="row-item">
+                    <select>
+                        <option value="北京">北京</option>
+                    </select>
+                </span>
+            </p>
+            <p class="select-row">
+                <select>
+                    <option value="选择经销商">选择经销商</option>
+                </select>
+            </p>
+            <p class="select-btn">
+                <button class="u-btnblack">搜索</button>
+            </p>
+        </div>
+        <div class="search-map" id="mapcontainer">
+
+            <!--图层标识-->
+            <!--最外层可以用BAIDUMAP库的默认dom层-->
+            <div style="width:300px">
+                <div class="layer-box">
+                    <section class="content">
+                        <h3>北京花乡桥丰田</h3>
+                        <p>销售热线:010-61260988</p>
+                        <p>地址:北京市大兴区海鑫北路9号</p>
+                    </section>
+                    <section class="action">
+                        <span><i class="i-ico i-ico-car"><img src="./images/ico/86_i_car.png"></i>驾车路线</span>
+                        <span><i class="i-ico i-ico-person"><img src="./images/ico/86_i_person.png"></i>步行路线</span>
+                    </section>
+                </div>
+            </div>
+
+        </div>
+    </section>
+    <script type="text/javascript" src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+    <script type="text/javascript" src="./scripts/lib/zepto.js"></script>
+    <script src="http://api.map.baidu.com/api?v=2.0&ak=67jMQ5DmYTe1TLMBKFUTcZAR" type="text/javascript"></script>
+    <script src="http://api.map.baidu.com/library/SearchInfoWindow/1.5/src/SearchInfoWindow.js"></script>
+    <script type="text/javascript" src="./scripts/common.js"></script>
+    <script type="text/javascript" src="./scripts/pagesearch.js"></script>
+    <script type="text/javascript" src="./scripts/wxshare.js"></script>
+  </body>
+</html>

@@ -1,0 +1,93 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-touch-fullscreen" content="yes">
+    <meta content="telephone=no,email=no" name="format-detection">
+    <meta content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no" name="viewport">
+    <meta content="black" name="apple-mobile-web-app-status-bar-style">
+    <meta name="msapplication-tap-highlight" content="no">
+    <meta name="wap-font-scale" content="no">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <link rel="stylesheet" type="text/css" href="./styles/main.css">
+    <title>丰田86</title>
+  </head>
+  <body>
+    <header>
+        <h1><a href="./index.html"><img src="images/86_logo.png"></a></h1>
+        <span class="navtoggle"><img src="images/86_nav.png"></span>
+         <nav>
+            <p><a href="./history.html">86历史</a></p>
+            <p><a href="./power.html">动力与操控</a></p>
+            <p><a href="./appearance.html">外观</a></p>
+            <p><a href="./interior.html">内饰</a></p>
+            <p><a href="./safety.html">安全</a></p>
+            <p><a href="./gallery.html">图库</a></p>
+            <p><a href="./submit.html">预约赏车</a></p>
+            <p><a href="./search.html">查询经销商</a></p>
+        </nav>
+    </header>    
+    <!--index页a屏-->
+    <section class="p-history">
+        <div class="history-wrapper" data-swiper="wrapper">
+            <!--历史页面a-->
+            <div class="history-a">
+                <span class="history-icoup"><i class="i-ico"><img src="./images/ico/86_i_slideup.gif"></i></span>
+            </div>
+            <!--历史页面b-->
+            <div class="history-b">
+                <!--视频元素-->
+                <div class="b-videocontent">
+                    <video id="toyotavideo" src="./images/toyota86.mp4" controls="controls">
+                        您的浏览器暂不支持视频文件播出
+                    </video>
+                    <div class="content-mask">
+                        <span class="video-icon"></span>
+                        <p class="title">我与86人车合一， 你也可以！</p>
+                        <p class="content">我是漂移教父， 因为我有86，你也可以!</p>
+                    </div>
+                </div>
+                <!--上滑标志-->
+                <span class="history-icoup"><i class="i-ico"><img src="./images/ico/86_i_slideup.gif"></i></span>
+            </div>
+            <!--历史页面c-->
+            <div class="history-c">
+                <div class="c-a">
+                    <h3>2012</h3>
+                    <p>纽博格林24小时耐力赛</p>
+                    <p>SP3级别冠军</p>
+                    <p>全日本拉力锦标赛JN-3级别</p>
+                    <p>第七站北海道站冠军</p>
+                </div>
+                <div class="c-b">
+                    <h3>2013</h3>
+                    <p>全日本专业漂移锦标赛</p>
+                    <p>第5站冠军</p>
+                </div>
+                <div class="c-c">
+                    <h3>2014</h3>
+                    <p>纽博格林24小时耐力赛</p>
+                    <p>SP3级别冠军</p>
+                </div>
+                <div class="c-d">
+                    <h3>2015</h3>
+                    <p>AUTOBACS SUPER GT第六站「SUGO</p>
+                    <p>GT 300km RACE」GT300级别 冠军</p>
+                </div>
+                <div class="c-e">
+                    <h3>2016</h3>
+                    <p>超耐久挑战赛 第三站 冠军</p>
+                </div>
+                <a class="c-vector" id="nextturn" href="./power.html"><img src="./images/86_history_turn.png"></a>
+            </div>
+        </div>
+    </section>
+    <script type="text/javascript" src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+    <script type="text/javascript" src="./scripts/lib/zepto.js"></script>
+    <script type="text/javascript" src="./scripts/common.js"></script>
+    <script type="text/javascript" src="./scripts/pagehistory.js"></script>
+    <script type="text/javascript" src="./scripts/wxshare.js"></script>
+  </body>
+</html>
