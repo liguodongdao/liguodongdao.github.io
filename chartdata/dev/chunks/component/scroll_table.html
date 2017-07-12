@@ -1,0 +1,49 @@
+<div class="m-scrolltable">
+	<div class="table-common" v-if="isEmpty">
+		<table>
+			<thead>
+				<tr>
+					<th></th>
+					<th v-for="item in data.category.data">{{item}}</th>
+					<th></th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td v-bind:colspan="data.category['data'].length+2" class="table-empty"><p>暂无数据</p></td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+	<div class="table-content" v-else>
+		<div class="table-left">
+			 <table>
+			   <thead>
+			     <tr>
+			       <th>{{data.category.data[0]}}</th>
+			     </tr>
+			   </thead>
+			   <tbody>
+			     <tr v-for="item in data.series" v-if="item.data[0]"><td>{{item.data[0]}}</td></tr>
+			   </tbody>
+			 </table>
+		</div>
+		<div class="table-right">
+			 <table>
+			    <thead>
+			      <tr>
+			        <th v-for="item in data.category.data.slice(1)">{{item}}</th>
+			      </tr>
+			    </thead>
+			    <tbody>
+			      <tr v-for="item in data.series" v-if="item.data.length>0">
+			        <td v-for="ite in item.data.slice(1)" v-bind:class="{'number':!isNaN(ite)}">{{ite}}</td>
+			      </tr>
+			    </tbody>
+			 </table>
+		</div>
+	</div>
+</div>
+
+
+

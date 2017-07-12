@@ -1,0 +1,51 @@
+//=================================
+// 根据rem实现页面自适应
+// 页面为320px时   基础字体为 12px
+// 页面缩放变大时  基础字体等比变化
+// 如果宽度超过1080 页面按照1080设备宽度计算
+//================================
+
+//基本变量定义
+$minSize:12.0;
+
+// 媒体查询
+// 最大宽度980px
+//===========================
+@for $i from 320 through 420 {
+    @if $i%10==0 {
+        @if $i==320 {
+            @media screen and(max-width: $i*1px) {
+                html {
+                    font-size: $i / 320.0 * $minSize * 1px;
+                }
+            }
+        }
+        @else if $i==420 {
+            @media screen and(min-width: ($i - 9)*1px) {
+                html {
+                    font-size: $i / 320.0 * $minSize * 1px;
+                }
+            }
+        }
+        @else {
+            @media screen and(min-width: ($i - 9)*1px) and (max-width: $i*1px) {
+                html {
+                    font-size: $i / 320.0 * $minSize * 1px
+                }
+            }
+        }
+    }
+}
+
+//============================
+// 自适应计算函数
+// 1 根据psd图宽度计算出当前psd图宽度下的基础字体大小
+// 2 根据$n和当前基础字体大小的倍数关系 计算出rem
+// 3 计算出的rem为一种比例值  页面缩放时因为基础字体大小变化  
+//   其他保存的都是比例值 会等比变化
+//============================
+
+$psd_width:1080px;       //psd图的宽度
+@function measure($n) {
+    @return $n/($psd_width/320.0 *$minSize)* 1rem;
+}

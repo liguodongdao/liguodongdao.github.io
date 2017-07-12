@@ -1,0 +1,124 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>sample</title>
+    <meta charset="utf-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="format-detection" content="email=no">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <link rel="stylesheet" type="text/css" href="./css/main.css">
+</head>
+<body>
+<div class="container">
+  <div class="sec" id="ppdetail">
+    <div class="sec-title">
+         库存分布详情
+         <p class="title-toggle u-toggle">
+             <span class="active" data-value="0">品牌</span>
+             <span data-value="1">车系</span>
+         </p>
+    </div>
+    <div class="sec-chart" id="cxchart"></div>
+    <div class="sec-table" id="cxtable">
+      <scroll-table v-bind:data="tabledata"></scroll-table>
+    </div>
+  </div>
+</div>
+<script type="text/javascript">
+  //品牌数据
+  var _ppdata = {
+    "category":{
+      "data":["序号","品牌","本店在售","本市在售"]
+    },
+    "series":[
+      {
+        "data":[1,"奔腾1",11,3.4]
+      },
+      {
+        "data":[2,"奔腾2",12,3.5]
+      },
+      {
+        "data":[3,"奔腾3",13,3.6]
+      },
+      {
+        "data":[4,"奔腾4",14,3.7]
+      },
+      {
+        "data":[5,"奔腾5",15,3.8]
+      },
+      {
+        "data":[6,"奔腾6",16,3.9]
+      },
+      {
+        "data":[7,"奔腾7",17,4.0]
+      },
+      {
+        "data":[8,"奔腾8",18,4.1]
+      },
+      {
+        "data":[9,"奔腾9",19,4.2]
+      },
+      {
+        "data":[10,"奔腾10",20,4.3]
+      },
+      {
+        "data":[11,"奔腾11",30,4.4]
+      },
+      {
+        "data":[12,"奔腾12",30,4.5]
+      }
+    ]
+  }
+  //车系数据
+  var _cxdata = {
+    "category":{
+      "data":["序号","品牌","车系","本店在售","本市在售"]
+    },
+    "series":[
+      {
+        "data":[1,"奔腾","1系列",11,3.4]
+      },
+      {
+        "data":[2,"奔腾","2系列",12,3.5]
+      },
+      {
+        "data":[3,"奔腾","3系列",13,3.6]
+      },
+      {
+        "data":[4,"奔腾","4系列",14,3.7]
+      },
+      {
+        "data":[5,"奔腾","5系列",15,3.8]
+      },
+      {
+        "data":[6,"奔腾","6系列",16,3.9]
+      },
+      {
+        "data":[7,"奔腾","7系列",17,4.0]
+      },
+      {
+        "data":[8,"奔腾","8系列",18,4.1]
+      },
+      {
+        "data":[9,"奔腾","9系列",19,4.2]
+      },
+      {
+        "data":[10,"奔腾","10系列",20,4.3]
+      },
+      {
+        "data":[10,"奔腾2","20系列",30,4.4]
+      },
+      {
+        "data":[10,"奔腾2","20系列",30,4.5]
+      }
+    ]
+  }
+</script>
+<script type="text/javascript" src="./js/lib/zepto.js"></script>
+<script type="text/javascript" src="./js/lib/vue.js"></script>
+<script type="text/javascript" src="./js/lib/echarts.common.min.js"></script>
+<script type="text/javascript" src="./js/stockdetailb.js"></script>
+</body>
+</html>

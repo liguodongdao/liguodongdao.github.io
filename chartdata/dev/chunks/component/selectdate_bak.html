@@ -1,0 +1,32 @@
+<div class="m-modalmask" style="display:table">
+  <div class="modalmask-wrapper">
+    <div class="modal-box">
+      <div class="modal-header">
+        <h3>请选择您想要查阅的日期(起点)</h3>
+      </div>
+      <div class="modal-body">
+        <div class="m-selectdate">
+          <div class="date-year"  v-on:touchstart="start(0,$event)" v-on:mousedown="start(0,$event)" v-on:touchmove="move(0,$event)" v-on:mousemove="move(0,$event)" v-on:touchend="end(0,$event)" v-on:mouseup="end(0,$event)">
+            <div class="prev">{{prevYear}}年</div>
+            <div class="now">{{year}}年</div>
+            <div class="next">{{nextYear}}年</div>
+          </div>
+          <div class="date-month"  v-on:touchstart="start(1,$event)" v-on:mousedown="start(1,$event)" v-on:touchmove="move(1,$event)" v-on:mousemove="move(1,$event)" v-on:touchend="end(1,$event)" v-on:mouseup="end(1,$event)">
+            <div class="prev">{{prevMonth}}月</div>
+            <div class="now">{{month}}月</div>
+            <div class="next">{{nextMonth}}月</div>
+          </div>
+          <div class="date-day"  v-on:touchstart="start(2,$event)" v-on:mousedown="start(2,$event)" v-on:touchmove="move(2,$event)" v-on:mousemove="move(2,$event)" v-on:touchend="end(2,$event)" v-on:mouseup="end(2,$event)">
+            <div class="prev">{{prevDay}}日</div>
+            <div class="now">{{day}}日</div>
+            <div class="next">{{nextDay}}日</div>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+          <button class="btn-cancel" v-on:click="$emit('close')">取消</button>
+          <button class="btn-sure" v-on:click="$emit('sure',2222)">确定</button>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,319 @@
+@charset "utf-8";
+@import "./basic/mixin.scss";
+@import "./basic/variable.scss";
+
+@import "./common/adaptive.scss";
+@import "./common/reset.scss";
+@import "./common/component.scss";
+@import "./common/date.scss";
+
+html{
+	height:100%;
+}
+body{
+	max-width:980px;
+	min-height:100%;
+    background: #ebebeb;
+    margin:0 auto;
+    font-family:Microsoft YaHei,arial;
+    padding-bottom:measure(180px);
+    padding-top:measure(20px);
+}
+[v-cloak]{
+	display:none !important;
+}
+.sec{
+	background:#fff;
+	padding-top: measure(45px);
+	margin-bottom:measure(25px);
+	.sec-title{
+		font-size: measure(42px);
+		height: measure(95px);
+		line-height: measure(95px);
+		padding:0 measure(45px) measure(45px) measure(45px);
+		.title-toggle{
+			float:right;
+		}
+	}
+	.sec-time{
+		text-align:center;
+		input{
+			display:inline-block;
+			color:#333333;
+			width:measure(450px);
+			height:measure(94px);
+			line-height:measure(94px);
+			border-radius:2px;
+			border:0px;
+			text-align:center;
+			background-image: url('../image/select_vector.png');
+			background-color:#eee;
+			background-repeat: no-repeat;
+			background-position: left measure(355px) top measure(35px);
+			background-size:measure(33px);
+		}
+		span{
+			padding:0 measure(30px);
+		}
+		margin-bottom:measure(50px);
+	}
+	.sec-number{
+		margin-top: measure(20px);
+		border-top: 1px #e6e6e6 solid;
+		border-bottom: 1px #e6e6e6 solid;
+		@include clearfloat;
+		.number-item{
+			display: block;
+			float:left;
+			width:25%;
+			text-align:center;
+			padding-top:measure(20px);
+			padding-bottom:measure(20px);
+			.item-name{
+				font-size: measure(36px);
+				line-height: measure(78px);
+			}
+			.item-number{
+				font-size: measure(60px);
+				line-height: measure(90px);
+				&.rise{
+					color:#e0201f;
+				}
+				&.hold{
+					color:#999999;
+				}
+				&.dec{
+					color:#1e9e6e;
+				}
+			}
+			.item-percentage{
+				font-size: measure(33px);
+				line-height: measure(70px);
+				span{
+					display: inline-block;
+					padding-left:measure(30px);
+					background:url(../image/vector.jpg);
+					background-repeat:no-repeat;
+					background-size:measure(25px);
+					&.rise{
+						color:#e0201f;
+						background-position:measure(5px) measure(-40px);
+					}
+					&.hold{
+						color:#999999;
+						background-position:measure(5px) measure(25px);
+					}
+					&.dec{
+						color:#1e9e6e;
+						background-position:measure(5px) measure(-108px);
+					}
+				}
+			}
+		}
+	}
+	.sec-chart{
+		height: measure(690px);
+		margin-bottom: measure(55px);
+	}
+	.pieChart{
+		height: measure(900px);
+	}
+	.sec-custom{
+		text-align:right;
+		padding:measure(30px) measure(40px);
+		a{
+			color:#ff8501;
+		}
+	}
+	.sec-more{
+		height: measure(130px);
+		line-height: measure(130px);
+		text-align: center;
+		a{
+			font-size: measure(42px);
+			color: #ff8500;
+		}
+		a:hover,
+		a:active{
+			color: #ff8500;
+		}
+		a:link,
+		a:visited{
+			color: #ff8500;
+		}
+	}
+}
+//
+#cluetable{
+	.m-scrolltable{
+		.table-left{
+			width:30%;
+		}
+		.table-right{
+			width:70%;
+		}
+	}
+}
+//
+#llsj{
+	.m-scrolltable{
+		.table-left{
+			width:30%;
+		}
+		.table-right{
+			width:70%;
+		}
+	}
+}
+#fbchart{
+	height:measure(1200px);
+}
+#jgfb{
+	.sec-chart{
+		height:measure(1200px);
+	}
+}
+#clfb{
+	.sec-chart{
+		height:measure(1200px);
+	}
+}
+#lcfb{
+	.sec-chart{
+		height:measure(1200px);
+	}
+}
+
+//库存数据
+#kcdata{
+	.number-item{
+		width:20%;
+		color:#999;
+		.item-name{
+			color:#000;
+		}
+	}
+}
+
+
+//库存品牌表格
+#fbtable{
+	th:nth-child(3),
+	td:nth-child(3){
+		text-align:center;
+	}
+	th:nth-child(2){
+		width:measure(150px);
+	}
+}
+//库存走势表格
+#zstable{
+	.m-scrolltable{
+		.table-left{
+			width:30%;
+		}
+		.table-right{
+			width:70%;
+		}
+	}
+}
+
+//库存效率表格
+#kcxltable{
+	th:nth-child(2){
+		width:measure(100px);
+	}
+	th:nth-child(3){
+		width:measure(550px);
+		text-align:center;
+	}
+	td:nth-child(3){
+		text-align:center;
+	}
+}
+#jgll{
+	.m-scrolltable{
+		.table-left{
+			width:25%;
+		}
+		.table-right{
+			width:75%;
+		}
+	}
+}
+#clll{
+	.m-scrolltable{
+		.table-left{
+			width:25%;
+		}
+		.table-right{
+			width:75%;
+		}
+	}
+}
+#lcll{
+	.m-scrolltable{
+		.table-left{
+			width:25%;
+		}
+		.table-right{
+			width:75%;
+		}
+	}
+}
+#escxl{
+	th:nth-child(2){
+		width:measure(100px);
+	}
+	th:nth-child(3){
+		width:measure(550px);
+		text-align:center;
+	}
+	td:nth-child(3){
+		text-align:center;
+	}
+}
+#followuptable{
+	.cube{
+		display: inline-block;
+		height: 80%;
+		vertical-align: center;
+		background:#ff8500;
+		float: left;
+	}
+}
+.sec{
+	#cluedetail .number-item{
+		width:25%;
+	}
+}
+#flowdetail{
+	.number-item{
+		display: block;
+		float: left;
+		width:33%;
+	}
+}
+
+#flowdetails{
+	.number-item{
+		width:33%;
+	}
+}
+#flowtable,
+#stocktable{
+	.table-left{
+		width:30%;
+	}
+	.table-right{
+		width:70%;
+	}
+}
+
+#ppdetail{
+	.sec-chart{
+		display: none;
+		height: measure(1200px);
+	}
+}
+

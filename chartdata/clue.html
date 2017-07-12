@@ -1,0 +1,193 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>sample</title>
+    <meta charset="utf-8">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-touch-fullscreen" content="yes">
+    <meta content="telephone=no,email=no" name="format-detection">
+    <meta content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no" name="viewport">
+    <meta content="black" name="apple-mobile-web-app-status-bar-style">
+    <meta name="msapplication-tap-highlight" content="no">
+    <meta name="wap-font-scale" content="no">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <link rel="stylesheet" type="text/css" href="./css/main.css">
+</head>
+<body>
+<div class="container">
+   <!--线索数量-->
+   <div class="sec" id="cluenumber">
+       <div class="sec-title">
+           线索数量
+           <p class="title-toggle u-switch">
+               <span class="active" data-value="0">近7天</span>
+               <span data-value="1">近30天</span>
+           </p>
+       </div>
+       <div class="sec-number" id="cluedetail">
+         <div class="number-item">
+           <p class="item-name">新线索</p>
+           <p class="item-number" v-bind:class="getClass(detaildata['newclues'][1])">{{getNumber(detaildata['newclues'][0])}}</p>
+           <p class="item-percentage">环比<span v-bind:class="getClass(detaildata['newclues'][1])">{{getNumber(detaildata['newclues'][1])}}%</span></p>
+         </div>
+         <div class="number-item">
+           <p class="item-name">24小时处理率</p>
+           <p class="item-number" v-bind:class="getClass(detaildata['24hour'][1])">{{getNumber(detaildata['24hour'][0])}}%</p>
+           <p class="item-percentage">环比<span v-bind:class="getClass(detaildata['24hour'][1])">{{getNumber(detaildata['24hour'][1])}}%</span></p>
+         </div>
+         <div class="number-item">
+           <p class="item-name">处理量</p>
+           <p class="item-number" v-bind:class="getClass(detaildata['manage'][1])">{{getNumber(detaildata['manage'][0])}}</p>
+           <p class="item-percentage">环比<span v-bind:class="getClass(detaildata['manage'][1])">{{getNumber(detaildata['manage'][1])}}%</span></p>
+         </div>
+         <div class="number-item">
+           <p class="item-name">成交</p>
+           <p class="item-number" v-bind:class="getClass(detaildata['deal'][1])">{{getNumber(detaildata['deal'][0])}}</p>
+           <p class="item-percentage">环比<span v-bind:class="getClass(detaildata['deal'][1])">{{getNumber(detaildata['deal'][1])}}</span></p>
+         </div>
+       </div>
+       <div class="sec-chart" id="cluechart"></div>
+       <div class="sec-table" id="cluetable">
+         <scroll-table v-bind:data="tabledata"></scroll-table>
+       </div>
+       <div class="sec-more">
+         <a href="">查看更多日期和指标 &gt;</a>
+       </div>
+   </div>
+   <!--跟进次数分布-->
+   <div class="sec" id="followupnumber">
+     <div class="sec-title">
+       跟进次数分布
+     </div>
+     <div class="sec-table" id="followuptable">
+       <table class="m-commontable">
+         <thead>
+           <tr>
+             <th></th>
+             <th v-for="item in category.data">{{item}}</th>
+             <th></th>
+           </tr>
+         </thead>
+         <tbody>
+           <tr v-if="!isEmpty" v-for="item in series">
+             <td></td>
+             <td>{{item['data'][0]}}</td>
+             <td>{{item['data'][1]}}</td>
+             <td>{{item['data'][2]}}%</td>
+             <td><span class="cube" v-bind:style="{ width:item['data'][2]+'%'}"></span></td>
+             <td></td>
+           </tr>
+           <tr v-if="isEmpty">
+             <td colspan="6" class="table-empty"><p>暂无数据</p></td>
+           </tr>
+         </tbody>
+       </table>
+     </div>
+   </div>
+</div>
+<script type="text/javascript">
+    //
+    var _datas = {
+      'newclues':[86,-5.6],
+      '24hour':[0,5.6],
+      'manage':[24,15.6],
+      'deal':[2,0]
+    }
+    var _datas30={
+      'newclues':[86,5.6],
+      '24hour':[90,-5.6],
+      'manage':[24,-15.6],
+      'deal':[2,0]
+    }
+    //线索数量
+    var _cluessnumber={
+       "category":{
+          "data":["日期","新线索数","24小时处理率","跟进数","指标一","指标二","指标三","指标四"]
+        },
+        "series":[
+          {
+            "data":['2016-12-18',168,70,108,55,66,77,88]
+          },
+          {
+            "data":['2016-12-17',140,85,120,77,88,99,22]
+          },
+          {
+            "data":['2016-12-16',125,68,72,55,66,77,88]
+          },
+          {
+            "data":['2016-12-15',120,55,68,22,33,44,55]
+          },
+          {
+            "data":['2016-12-14',108,40,50,33,44,55,66]
+          },
+          {
+            "data":['2016-12-13',98,86,88,44,55,66,77]
+          },
+          {
+            "data":['2016-12-12',91,81,72,55,66,77,88]
+          },
+          {
+            "data":['2016-12-11',91,81,72,66,77,88,99]
+          },
+          {
+            "data":['2016-12-10',91,81,72,88,99,100,101]
+          },
+          {
+            "data":['2016-12-9',91,81,72,22,33,44,55]
+          },
+          {
+            "data":['2016-12-8',91,81,72,11,22,33,44]
+          },
+          {
+            "data":['2016-12-7',91,81,72,22,33,44,55]
+          },
+          {
+            "data":['2016-12-6',91,81,72,33,22,11,23]
+          },
+          {
+            "data":['2016-12-5',91,81,72,56,78,90,23]
+          },
+          {
+            "data":['2016-12-4',91,81,72,45,67,89,22]
+          },
+          {
+            "data":['2016-12-3',91,81,72,12,23,45,67]
+          },
+          {
+            "data":['2016-12-2',91,81,72,12,33,44,55]
+          },
+          {
+            "data":['2016-12-1',91,81,72,22,32,41,52]
+          },
+          {
+            "data":['2016-12-0',91,81,72,34,23,23,12]
+          }
+        ]
+    }
+    //跟进次数
+    var _followupnumber={
+      "category":{
+        "data":["跟进次数","人数","占比",""]
+      },
+      "series":[
+        { "data":[1,32] },
+        { "data":[2,33] },
+        { "data":[3,34] },
+        { "data":[4,35] },
+        { "data":[5,21] },
+        { "data":[6,22] },
+        { "data":[7,23] },
+        { "data":[8,24] },  
+        { "data":[9,25] },  
+        { "data":[10,26]},  
+        { "data":[11,32]}
+      ]
+    }
+</script>
+<script type="text/javascript" src="./js/lib/zepto.js"></script>
+<script type="text/javascript" src="./js/lib/vue.js"></script>
+<script type="text/javascript" src="./js/lib/echarts.common.min.js"></script>
+<script type="text/javascript" src="./js/clue.js"></script>
+</body>
+</html>

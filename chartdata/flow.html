@@ -1,0 +1,820 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>流量数据</title>
+    <meta charset="utf-8">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-touch-fullscreen" content="yes">
+    <meta content="telephone=no,email=no" name="format-detection">
+    <meta content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no" name="viewport">
+    <meta content="black" name="apple-mobile-web-app-status-bar-style">
+    <meta name="msapplication-tap-highlight" content="no">
+    <meta name="wap-font-scale" content="no">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <link rel="stylesheet" type="text/css" href="./css/main.css">
+</head>
+<body>
+<div class="container">
+    <!--流量数据-->
+    <div class="sec" id="llsj">
+      <div class="sec-title">
+        流量数据
+        <p class="title-toggle u-switch">
+          <span class="active" data-value="0">昨天</span>
+          <span data-value="1">近7天</span>
+          <span data-value="2">近30天</span>
+        </p>
+      </div>
+      <div class="sec-number" id="flowdetail" v-cloak>
+        <div class="number-item">
+          <p class="item-name">在售车源</p>
+          <p class="item-number" v-bind:class="getClass(detaildata['sold'][1])">{{getNumber(detaildata['sold'][0])}}</p>
+          <p class="item-percentage">环比 <span v-bind:class="getClass(detaildata['sold'][1])">{{getNumber(detaildata['sold'][1])}}%</span></p>
+          <p class="item-percentage">同比 <span v-bind:class="getClass(detaildata['sold'][2])">{{getRateNumber(detaildata['sold'][2])}}</span></p>
+        </div>
+        <div class="number-item">
+          <p class="item-name">总浏览量</p>
+          <p class="item-number" v-bind:class="getClass(detaildata['pageview'][1])">{{getNumber(detaildata['pageview'][0])}}</p>
+          <p class="item-percentage">环比 <span v-bind:class="getClass(detaildata['pageview'][1])">{{getNumber(detaildata['pageview'][1])}}%</span></p>
+          <p class="item-percentage">同比 <span v-bind:class="getClass(detaildata['pageview'][2])">{{getRateNumber(detaildata['pageview'][2])}}</span></p>
+        </div>
+        <div class="number-item">
+          <p class="item-name">主动线索</p>
+          <p class="item-number" v-bind:class="getClass(detaildata['clue'][1])">{{getNumber(detaildata['clue'][0])}}</p>
+          <p class="item-percentage">环比 <span v-bind:class="getClass(detaildata['clue'][1])">{{getNumber(detaildata['clue'][1])}}%</span></p>
+          <p class="item-percentage">同比 <span v-bind:class="getClass(detaildata['clue'][2])">{{getRateNumber(detaildata['clue'][2])}}</span></p>
+        </div>
+        <!--
+        <div class="number-item">
+          <p class="item-name">电话量</p>
+          <p class="item-number" v-bind:class="getClass(detaildata['tel'][1])">{{getNumber(detaildata['tel'][0])}}</p>
+          <p class="item-percentage">环比 <span v-bind:class="getClass(detaildata['tel'][1])">{{getNumber(detaildata['tel'][1])}}%</span></p>
+          <p class="item-percentage">同比 <span v-bind:class="getClass(detaildata['tel'][2])">{{getRateNumber(detaildata['tel'][1])}}%</span></p>
+        </div>
+        -->
+      </div>
+      <div class="sec-chart"></div>
+      <div class="sec-table">
+         <scroll-table v-bind:data="tabledata"></scroll-table>
+      </div>
+      <div class="sec-more">
+        <a href="">查看更多日期和指标</a>
+      </div>
+    </div>
+    <!--品牌流量分布-->
+    <div class="sec" id="ppcx">
+      <div class="sec-title">
+        品牌流量分布
+        <p class="title-toggle u-toggle">
+          <span class="active" data-value="0">品牌</span>
+          <span data-value="1">车系</span>
+        </p>
+      </div>
+      <div class="sec-chart pieChart">
+      </div>
+      <div class="sec-table">
+        <scroll-table v-bind:data="tabledata"></scroll-table>
+      </div>
+    </div>
+    <!--价格流量-->
+    <div class="sec" id="jgll">
+      <div class="sec-title">价格流量</div>
+      <div class="sec-chart pieChart"></div>
+      <div class="sec-table">
+        <scroll-table v-bind:data="tabledata"></scroll-table>
+      </div>
+    </div>
+    <!--车龄流量-->
+    <div class="sec" id="clll">
+      <div class="sec-title">车龄流量</div>
+      <div class="sec-chart pieChart"></div>
+      <div class="sec-table">
+        <scroll-table v-bind:data="tabledata"></scroll-table>
+      </div>
+    </div>
+    <!--里程流量-->
+    <div class="sec" id="lcll">
+      <div class="sec-title">里程流量</div>
+      <div class="sec-chart pieChart"></div>
+      <div class="sec-table">
+        <scroll-table v-bind:data="tabledata"></scroll-table>
+      </div>
+    </div>
+    <!--北京市二手车流量效率排行榜-->
+    <div class="sec" id="escxl">
+      <div class="sec-title">
+        北京市二手车流量效率排行榜
+        <!--
+        <div class="title-toggle u-toggle">
+          <span class="active" data-value="0">总流量</span>
+          <span data-value="1">车均</span>
+        </div>
+        -->
+      </div>
+      <div class="sec-table">
+        <common-table v-bind:data="tabledata"></common-table>
+      </div>
+    </div>
+    <!--访问时长-->
+    <!--
+    <div class="sec" id="fwsc">
+      <div class="sec-title">访问时长</div>
+      <div class="sec-chart">
+        
+      </div>
+      <div class="sec-table">
+         <common-table v-bind:data="tabledata"></common-table>
+      </div>
+      <div class="sec-more">
+        <a href="">查看更多日期和指标 &gt;</a>
+      </div>
+    </div>
+    -->
+</div>
+<script type="text/javascript">
+
+    //昨天
+    var _datas = {
+      'sold':[86,-5.6,-2.2],
+      'pageview':[90,5.6,12.2],
+      'clue':[24,15.6,25.6],
+      'tel':[199,5.6,22.2]
+    }
+    //近7天
+    var _datas7 = {
+      'sold':[76,-5.6,-2.2],
+      'pageview':[80,5.6,12.2],
+      'clue':[14,15.6,25.6],
+      'tel':[189,5.6,22.2]
+    }
+    //近30天
+    var _datas30={
+      'sold':[96,-6.2,-3.2],
+      'pageview':[70,5.8,11.2],
+      'clue':[13,15.9,24.6],
+      'tel':[179,9.2,22.2]
+    }
+    //流量数据 30天
+    var _flowData = {
+        "category":{
+          "data":["日期","在售车源","总浏览量","同级别店铺浏览量","车均浏览量"]
+        },
+        "series":[
+          {
+            "data":['2016-12-18',86,70,140,108]
+          },
+           {
+            "data":['2016-12-19',87,71,139,109]
+          },
+           {
+            "data":['2016-12-20',88,72,138,110]
+          },
+           {
+            "data":['2016-12-21',89,73,137,111]
+          },
+           {
+            "data":['2016-12-22',90,74,136,112]
+          },
+           {
+            "data":['2016-12-23',91,75,135,113]
+          },
+           {
+            "data":['2016-12-24',92,76,134,114]
+          },
+           {
+            "data":['2016-12-25',93,77,133,115]
+          },
+           {
+            "data":['2016-12-26',94,78,132,116]
+          },
+           {
+            "data":['2016-12-27',95,79,131,117]
+          },
+           {
+            "data":['2016-12-28',96,80,130,118]
+          },
+           {
+            "data":['2016-12-29',97,81,129,119]
+          }
+        ]
+    }
+    //品牌流量分布
+    var _pinpaiData={
+      "category":{
+        "data":["序号","品牌","在售车源","总浏览量","车均浏览量","指标一","指标二","指标三"]
+      },
+      "series":[
+        {
+          "data":[1,"奔腾",288,1280,20,30,40]
+        },
+          {
+          "data":[2,"别克",155,1500,50,30,30]
+        },
+          {
+          "data":[3,"宝马",52,1680,20,30,20]
+        },
+          {
+          "data":[4,"奔腾2系",287,1280,20,30,10]
+        },
+          {
+          "data":[5,"奔腾3系",286,1280,20,30,9]
+        },
+          {
+          "data":[6,"奔腾4系",285,1280,20,30,8]
+        },
+          {
+          "data":[7,"奔腾5系",284,1280,20,30,7]
+        },
+          {
+          "data":[8,"奔腾6系",283,1280,20,30,6]
+        },
+          {
+          "data":[9,"奔腾7系",282,1280,20,30,5]
+        },
+          {
+          "data":[10,"奔腾8系",281,1280,20,30,4]
+        },
+          {
+          "data":[11,"奔腾9系",281,1280,20,30,4]
+        },
+          {
+          "data":[12,"奔腾10系",281,1280,20,30,4]
+        },
+          {
+          "data":[13,"奔腾11系",281,1280,20,30,4]
+        },
+          {
+          "data":[14,"奔腾12系",281,1280,20,30,4]
+        },
+          {
+          "data":[15,"奔腾13系",281,1280,20,30,4]
+        },
+          {
+          "data":[16,"奔腾14系",281,1280,20,30,4]
+        }
+      ]
+    }
+    var _pinpaiData7={
+      "category":{
+        "data":["序号","品牌","在售车源","总浏览量","车均浏览量","指标一","指标二","指标三"]
+      },
+      "series":[
+        {
+          "data":[71,"奔腾",288,1280,20,30,40]
+        },
+          {
+          "data":[72,"别克",155,1500,50,30,30]
+        },
+          {
+          "data":[73,"宝马",52,1680,20,30,20]
+        },
+          {
+          "data":[74,"奔腾2系",287,1280,20,30,10]
+        },
+          {
+          "data":[75,"奔腾3系",286,1280,20,30,9]
+        },
+          {
+          "data":[76,"奔腾4系",285,1280,20,30,8]
+        },
+          {
+          "data":[77,"奔腾5系",284,1280,20,30,7]
+        },
+          {
+          "data":[78,"奔腾6系",283,1280,20,30,6]
+        },
+          {
+          "data":[79,"奔腾7系",282,1280,20,30,5]
+        },
+          {
+          "data":[70,"奔腾8系",281,1280,20,30,4]
+        }
+      ]
+    }
+    var _pinpaiData30={
+      "category":{
+        "data":["序号","品牌","在售车源","总浏览量","车均浏览量","指标一","指标二","指标三"]
+      },
+      "series":[
+        {
+          "data":[301,"奔腾",288,1280,20,30,40]
+        },
+          {
+          "data":[302,"别克",155,1500,50,30,30]
+        },
+          {
+          "data":[303,"宝马",52,1680,20,30,20]
+        },
+          {
+          "data":[304,"奔腾2系",287,1280,20,30,10]
+        },
+          {
+          "data":[305,"奔腾3系",286,1280,20,30,9]
+        },
+          {
+          "data":[306,"奔腾4系",285,1280,20,30,8]
+        },
+          {
+          "data":[307,"奔腾5系",284,1280,20,30,7]
+        },
+          {
+          "data":[308,"奔腾6系",283,1280,20,30,6]
+        },
+          {
+          "data":[309,"奔腾7系",282,1280,20,30,5]
+        },
+          {
+          "data":[3010,"奔腾8系",281,1280,20,30,4]
+        }
+      ]
+    }
+
+    
+    //车系流量分布
+    var _chexiData={
+      "category":{
+        "data":["序号","品牌","车系","在售车源","总浏览量","车均浏览量","指标一","指标二","指标三"]
+      },
+      "series":[
+        {
+          "data":[1,"奔腾","奔腾1系",288,1280,20,30,40]
+        },
+          {
+          "data":[2,"奔腾","奔腾2系",287,1500,50,30,30]
+        },
+          {
+          "data":[3,"奔腾","奔腾3系",286,1680,20,30,20]
+        },
+          {
+          "data":[4,"奔腾","奔腾4系",285,1280,20,30,10]
+        },
+          {
+          "data":[5,"奔腾","奔腾5系",284,1280,20,30,9]
+        },
+          {
+          "data":[6,"奔腾","奔腾6系",283,1280,20,30,8]
+        },
+          {
+          "data":[7,"奔腾","奔腾7系",282,1280,20,30,7]
+        },
+          {
+          "data":[8,"奔腾","奔腾8系",281,1280,20,30,6]
+        },
+          {
+          "data":[9,"奔腾","奔腾9系",280,1280,20,30,5]
+        },
+          {
+          "data":[10,"奔腾","奔腾10系",279,1280,20,30,4]
+        },
+          {
+          "data":[11,"奔腾","奔腾11系",279,1280,20,30,4]
+        },
+          {
+          "data":[12,"奔腾","奔腾12系",279,1280,20,30,4]
+        },
+          {
+          "data":[13,"奔腾","奔腾13系",279,1280,20,30,4]
+        },
+          {
+          "data":[14,"奔腾","奔腾14系",279,1280,20,30,4]
+        },
+          {
+          "data":[15,"奔腾","奔腾15系",279,1280,20,30,4]
+        }
+      ]
+    }
+    var _chexiData7={
+      "category":{
+        "data":["序号","品牌","车系","在售车源","总浏览量","车均浏览量","指标一","指标二","指标三"]
+      },
+      "series":[
+        {
+          "data":[71,"奔腾","奔腾1系",288,1280,20,30,40]
+        },
+          {
+          "data":[72,"奔腾","奔腾2系",287,1500,50,30,30]
+        },
+          {
+          "data":[73,"奔腾","奔腾3系",286,1680,20,30,20]
+        },
+          {
+          "data":[74,"奔腾","奔腾4系",285,1280,20,30,10]
+        },
+          {
+          "data":[75,"奔腾","奔腾5系",284,1280,20,30,9]
+        },
+          {
+          "data":[76,"奔腾","奔腾6系",283,1280,20,30,8]
+        },
+          {
+          "data":[77,"奔腾","奔腾7系",282,1280,20,30,7]
+        },
+          {
+          "data":[78,"奔腾","奔腾8系",281,1280,20,30,6]
+        },
+          {
+          "data":[79,"奔腾","奔腾9系",280,1280,20,30,5]
+        },
+          {
+          "data":[70,"奔腾","奔腾10系",279,1280,20,30,4]
+        }
+      ]
+    }
+    var _chexiData30={
+      "category":{
+        "data":["序号","品牌","车系","在售车源","总浏览量","车均浏览量","指标一","指标二","指标三"]
+      },
+      "series":[
+        {
+          "data":[31,"奔腾","奔腾1系",288,1280,20,30,40]
+        },
+          {
+          "data":[32,"奔腾","奔腾2系",287,1500,50,30,30]
+        },
+          {
+          "data":[33,"奔腾","奔腾3系",286,1680,20,30,20]
+        },
+          {
+          "data":[34,"奔腾","奔腾4系",285,1280,20,30,10]
+        },
+          {
+          "data":[35,"奔腾","奔腾5系",284,1280,20,30,9]
+        },
+          {
+          "data":[36,"奔腾","奔腾6系",283,1280,20,30,8]
+        },
+          {
+          "data":[37,"奔腾","奔腾7系",282,1280,20,30,7]
+        },
+          {
+          "data":[38,"奔腾","奔腾8系",281,1280,20,30,6]
+        },
+          {
+          "data":[39,"奔腾","奔腾9系",280,1280,20,30,5]
+        },
+          {
+          "data":[30,"奔腾","奔腾10系",279,1280,20,30,4]
+        }
+      ]
+    }
+
+
+    //价格流量昨天
+    var _priceData={
+      "category":{
+          "data":["品牌","在售车源","总浏览量","车均浏览量","车均线索量"]
+      },
+      "series": [
+        {
+          "data":[2,15,80,8,0.6]
+        },{
+          "data":[2,11,11,11,11]
+        },{
+          "data":[4,8,150,15,0]
+        },{
+          "data":[6,27,190,19,5]
+        },{
+          "data":[9,39,180,18,0]
+        },{
+          "data":[12,18,150,15,0.4]
+        },{
+          "data":[16,27,180,18,0.5]
+        },{
+          "data":[22,31,120,12,0.6]
+        },{
+          "data":[32,17,90,9,0]
+        }
+      ]
+    }
+    //价格流量7天
+    var _priceData7={
+        "category":{
+          "data":["品牌","在售车源","总浏览量","车均浏览量","车均线索量"]
+        },
+        "series": [
+          {
+            "data":[71,15,80,8,0.6]
+          },{
+            "data":[72,11,11,11,11]
+          },{
+            "data":[73,8,150,15,0]
+          },{
+            "data":[74,27,190,19,5]
+          },{
+            "data":[75,39,180,18,0]
+          },{
+            "data":[76,18,150,15,0.4]
+          },{
+            "data":[77,27,180,18,0.5]
+          },{
+            "data":[78,31,120,12,0.6]
+          },{
+            "data":[79,17,90,9,0]
+          }
+        ]
+    }
+    //价格流量30天
+    var _priceData30={
+        "category":{
+          "data":["品牌","在售车源","总浏览量","车均浏览量","车均线索量"]
+        },
+        "series": [
+          {
+            "data":[32,15,80,8,0.6]
+          },{
+            "data":[32,11,11,11,11]
+          },{
+            "data":[34,8,150,15,0]
+          },{
+            "data":[36,27,190,19,5]
+          },{
+            "data":[39,39,180,18,0]
+          },{
+            "data":[312,18,150,15,0.4]
+          },{
+            "data":[316,27,180,18,0.5]
+          },{
+            "data":[322,31,120,12,0.6]
+          },{
+            "data":[332,17,90,9,0]
+          }
+        ]
+    }
+
+    //车龄流量
+    /*
+    var _ageData={
+      "category":{
+          "data":["品牌","在售车源","总浏览量","车均浏览量","车均线索量"]
+      },
+      "series": [
+        {
+          "data":[1,15,80,8,0.6]
+        },{
+          "data":[1,15,80,8,0.6]
+        },{
+          "data":[2,8,150,15,0]
+        },{
+          "data":[4,27,190,19,5]
+        },{
+          "data":[6,39,180,18,0]
+        },{
+          "data":[9,18,150,15,0.4]
+        },{
+          "data":[11,27,180,18,0.5]
+        }
+      ]
+    }*/
+    
+    var _ageData={
+        "category":{
+            "data":["品牌","在售车源","总浏览量","车均浏览量","车均线索量"]
+        },
+        "series": [
+            {
+                "data":["1年以内",15,80,8,0.6]
+            },{
+                "data":["1-3年",8,150,15,0]
+            },{
+                "data":["3-5年",27,190,19,5]
+            },{
+                "data":["5-8年",39,180,18,0]
+            },{
+                "data":["8-10年",18,150,15,0.4]
+            },{
+                "data":["10年及以上",27,180,18,0.5]
+            }
+        ]
+    }
+    //车龄流量
+    var _ageData7={
+      "category":{
+          "data":["品牌","在售车源","总浏览量","车均浏览量","车均线索量"]
+      },
+      "series": [
+        {
+          "data":[71,15,80,8,0.6]
+        },{
+          "data":[72,15,80,8,0.6]
+        },{
+          "data":[73,8,150,15,0]
+        },{
+          "data":[74,27,190,19,5]
+        },{
+          "data":[75,39,180,18,0]
+        },{
+          "data":[76,18,150,15,0.4]
+        },{
+          "data":[77,27,180,18,0.5]
+        }
+      ]
+    }
+    //车龄流量
+    var _ageData30={
+      "category":{
+          "data":["品牌","在售车源","总浏览量","车均浏览量","车均线索量"]
+      },
+      "series": [
+        {
+          "data":[37,15,80,8,0.6]
+        },{
+          "data":[36,15,80,8,0.6]
+        },{
+          "data":[35,8,150,15,0]
+        },{
+          "data":[34,27,190,19,5]
+        },{
+          "data":[33,39,180,18,0]
+        },{
+          "data":[32,18,150,15,0.4]
+        },{
+          "data":[31,27,180,18,0.5]
+        }
+      ]
+    }
+
+    //里程流量
+    var _lcData={
+      "category":{
+          "data":["品牌","在售车源","总浏览量","车均浏览量","车均线索量"]
+      },
+      "series":[
+        {
+          "data":[1,15,80,8,0.6]
+        },
+         {
+          "data":[2,8,150,15,0]
+        },
+         {
+          "data":[4,27,190,19,5]
+        },
+         {
+          "data":[7,39,180,18,0]
+        },
+         {
+          "data":[11,18,150,15,0.4]
+        },
+         {
+          "data":[16,27,180,18,0.5]
+        },
+         {
+          "data":[22,31,120,12,0.6]
+        }
+      ]
+    }
+    //里程流量7天
+    var _lcData7={
+      "category":{
+          "data":["品牌","在售车源","总浏览量","车均浏览量","车均线索量"]
+      },
+      "series":[
+        {
+          "data":[71,15,80,8,0.6]
+        },
+         {
+          "data":[72,8,150,15,0]
+        },
+         {
+          "data":[73,27,190,19,5]
+        },
+         {
+          "data":[74,39,180,18,0]
+        },
+         {
+          "data":[75,18,150,15,0.4]
+        },
+         {
+          "data":[76,27,180,18,0.5]
+        },
+         {
+          "data":[77,31,120,12,0.6]
+        }
+      ]
+    }
+    //里程流量30天
+    var _lcData30={
+        "category":{
+            "data":["品牌","在售车源","总浏览量","车均浏览量","车均线索量"]
+        },
+        "series":[
+          {
+            "data":[37,15,80,8,0.6]
+          },
+           {
+            "data":[36,8,150,15,0]
+          },
+           {
+            "data":[35,27,190,19,5]
+          },
+           {
+            "data":[34,39,180,18,0]
+          },
+           {
+            "data":[33,18,150,15,0.4]
+          },
+           {
+            "data":[32,27,180,18,0.5]
+          },
+           {
+            "data":[31,31,120,12,0.6]
+          }
+        ]
+    }
+
+    //北京市二手测流量效率排行榜
+    //总量
+    var _flowphzl={
+      "category":{
+        "data":["序号","商家名称","总浏览量","车均浏览量"]
+      },
+      "series":[
+        {
+          "shopId":123,
+          "data":[1,"北京福汇祥和二手车有限公司",1108,19]
+        },{
+          "shopId":456,
+          "data":[2,"北京福汇祥和二手车有限公司",1108,19]
+        },{
+          "shopId":457,
+          "data":[3,"北京福汇祥和二手车有限公司",1108,19]
+        },{
+          "shopId":124,
+          "data":[4,"北京福汇祥和二手车有限公司",1108,19]
+        },{
+          "shopId":459,
+          "data":[5,"北京福汇祥和二手车有限公司",1108,19]
+        },{
+          "shopId":460,
+          "data":[6,"北京福汇祥和二手车有限公司",1108,19]
+        },{
+          "shopId":123,
+          "data":[7,"北京福汇祥和二手车有限公司",1108,19]
+        },{
+          "shopId":461,
+          "data":[8,"北京福汇祥和二手车有限公司",1108,19]
+        }
+      ]
+    }
+    //车均
+    var _flowphcj={
+      "category":{
+        "data":["序号","商家名称","总浏览量","车均浏览量"]
+      },
+      "series":[
+        {
+          "data":[5,"北京福汇祥和二手车有限公司",1108,19]
+        },{
+          "data":[9,"北京福汇祥和二手车有限公司",1108,19]
+        },{
+          "data":[9,"北京福汇祥和二手车有限公司",1108,19]
+        },{
+          "data":[9,"北京福汇祥和二手车有限公司",1108,19]
+        },{
+          "data":[9,"北京福汇祥和二手车有限公司",1108,19]
+        },{
+          "data":[9,"北京福汇祥和二手车有限公司",1108,19]
+        },{
+          "data":[9,"北京福汇祥和二手车有限公司",1108,19]
+        },{
+          "data":[9,"北京福汇祥和二手车有限公司",1108,19]
+        }
+      ]
+    }
+    //访问时长(直接给三十天的)
+    var _fwsc={
+      "category":{
+        "data":["日期","北京用户综合访问时长","本店车详访问时长"]
+      },
+      "series":[
+        {
+          "data":["2016-12-18",1.8,15]
+        }, {
+          "data":["2016-12-19",1.9,16]
+        }, {
+          "data":["2016-12-20",1.8,17]
+        }, {
+          "data":["2016-12-21",1.8,18]
+        }, {
+          "data":["2016-12-22",1.8,19]
+        }, {
+          "data":["2016-12-23",1.8,20]
+        }, {
+          "data":["2016-12-24",1.8,21]
+        }, {
+          "data":["2016-12-25",1.8,22]
+        }, {
+          "data":["2016-12-26",1.8,23]
+        }, {
+          "data":["2016-12-27",1.8,24]
+        }
+      ]
+    }
+
+</script>
+<script type="text/javascript" src="./js/lib/zepto.js"></script>
+<script type="text/javascript" src="./js/lib/vue.js"></script>
+<script type="text/javascript" src="./js/lib/echarts.common.min.js"></script>
+<script type="text/javascript" src="./js/flow.js"></script>
+</body>
+</html>

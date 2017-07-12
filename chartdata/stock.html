@@ -1,0 +1,408 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>sample</title>
+    <meta charset="utf-8">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-touch-fullscreen" content="yes">
+    <meta content="telephone=no,email=no" name="format-detection">
+    <meta content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no" name="viewport">
+    <meta content="black" name="apple-mobile-web-app-status-bar-style">
+    <meta name="msapplication-tap-highlight" content="no">
+    <meta name="wap-font-scale" content="no">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <link rel="stylesheet" type="text/css" href="./css/main.css">
+</head>
+<body>
+<div class="container">
+   <!--库存数据-->
+   <div class="sec" id="kcdata" v-cloak>
+    <div class="sec-title">
+      库存数据
+      <p class="title-toggle u-switch">
+        <span class="active" data-value="0">近7天</span>
+        <span data-value="1">近30天</span>
+      </p>
+    </div>
+    <div class="sec-number">
+      <div class="number-item">
+        <p class="item-name">在售</p>
+        <p class="item-number">{{number[0]}}</p>
+      </div>
+      <div class="number-item">
+        <p class="item-name">新增</p>
+        <p class="item-number">{{number[1]}}</p>
+      </div>
+      <div class="number-item">
+        <p class="item-name">已售</p>
+        <p class="item-number">{{number[2]}}</p>
+      </div>
+      <div class="number-item">
+        <p class="item-name">下架</p>
+        <p class="item-number">{{number[3]}}</p>
+      </div>
+      <div class="number-item">
+        <p class="item-name">平均库龄</p>
+        <p class="item-number">{{number[4]}}</p>
+      </div>
+    </div>
+   </div>
+   <!--库存走势-->
+   <div class="sec" id="kczs">
+       <div class="sec-title">
+           库存走势
+           <!--
+           <p class="title-toggle u-switch">
+               <span class="active" data-value="0">近7天</span>
+               <span data-value="1">近30天</span>
+           </p>
+           -->
+       </div>
+       <div class="sec-chart" id="zschart">
+       </div>
+       <div class="sec-table" id="zstable">
+          <scroll-table v-bind:data="tabledata"></scroll-table>
+       </div>
+       <div class="sec-more">
+         <a href="">查看更多日期和指标 &gt;</a>
+       </div>
+   </div>
+    <!--库存分布-->
+   <div class="sec" id="kcfb">
+       <div class="sec-title">
+           库存分布
+           <p class="title-toggle u-toggle">
+               <span class="active" data-value="0">品牌</span>
+               <span data-value="1">车系</span>
+           </p>
+       </div>
+       <div class="sec-chart" id="fbchart"></div>
+       <div class="sec-table" id="fbtable">
+         <common-table v-bind:data="tabledata"></common-table>
+       </div>
+       <div class="sec-more">
+         <a href="">查看更多日期和指标 &gt;</a>
+       </div>
+   </div>
+
+   <!--价格分布-->
+   <div class="sec" id="jgfb">
+      <div class="sec-title">价格分布</div>
+      <div class="sec-chart" id="jgfbchart"></div>
+      <div class="sec-table" id="jgfbtable">
+        <common-table v-bind:data="tabledata"></common-table>
+      </div>
+   </div>
+   <!--车龄分布-->
+   <div class="sec" id="clfb">
+      <div class="sec-title">车龄分布</div>
+      <div class="sec-chart" id="clfbchart"></div>
+      <div class="sec-table" id="clfbtable">
+        <common-table v-bind:data="tabledata"></common-table>
+      </div>
+   </div>
+   <!--里程分布-->
+   <div class="sec" id="lcfb">
+      <div class="sec-title">里程分布</div>
+      <div class="sec-chart" id="lcfbchart"></div>
+      <div class="sec-table" id="lcfbtable">
+        <common-table v-bind:data="tabledata"></common-table>
+      </div>
+   </div>
+
+   <!--周转率-->
+   <div class="sec" id="zzl">
+       <div class="sec-title">
+           周转率
+           <p class="title-toggle u-toggle">
+               <span class="active" data-value="0">车源</span>
+               <span data-value="1">资金</span>
+           </p>
+       </div>
+       <div class="sec-chart" id="zzlchart">
+       </div>
+       <div class="sec-table" id="zzltable">
+          <common-table v-bind:data="tabledata"></common-table>
+          <!--
+          <table class="m-commontable">
+            <thead>
+              <tr>
+                <th></th>
+                <th>日期</th>
+                <th>本店铺</th>
+                <th>本市平均</th>
+                <th></th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td colspan="5" class="table-empty"><p>数据正在努力整理中，敬请期待.......</p></td>
+              </tr>
+            </tbody>
+          </table>
+          -->
+       </div>
+   </div>
+   <!--北京市二手车库存效率排行榜-->
+   <!--
+   <div class="sec">
+       <div class="sec-title">北京市二手车库存效率排行榜</div>
+       <div class="sec-table" id="kcxltable">
+          <common-table v-bind:data="tabledata"></common-table>
+       </div>
+   </div>
+   -->
+</div>
+<script type="text/javascript">
+  //库存数据
+  //近7天
+  var _data7 = [199,20,20,30,30];
+  //近30天
+  var _data30 = [219,35,35,35,35];
+
+  //价格分布
+  var _jgdata = {
+    "category":{
+      "data":["序号","价格","本店在售","本市在售"]
+    },
+    "series":[
+        {'data':[1,15,80]},
+        {'data':[4,8,150]},
+        {'data':[6,27,180]},
+        {'data':[9,39,180]},
+        {'data':[13,18,150]},
+        {'data':[16,27,180]},
+        {'data':[21,31,120]},
+        {'data':[26,39,180]},
+        {'data':[36,18,150]},
+        {'data':[51,17,90]}
+    ]
+  }
+
+  //车龄分布
+  var _cldata={
+    "category":{
+      "data":["序号","车龄","本店在售","本市在售"]
+    },
+    "series":[
+      {"data":[1,19,180]},
+      {"data":[2,28,150]},
+      {"data":[4,61,180]},
+      {"data":[6,46,220]},
+      {"data":[9,37,190]},
+      {"data":[11,8,180]}
+    ]
+  }
+
+  //里程分布
+  var _lcdata={
+    "category":{
+      "data":["序号","里程","在售","本市在售"]
+    },
+    "series":[
+      {"data":[1,15,180]},
+      {"data":[2,18,150]},
+      {"data":[4,55,280]},
+      {"data":[7,56,220]},
+      {"data":[11,32,190]},
+      {"data":[16,15,130]},
+      {"data":[21,8,80]}
+    ]
+  }
+
+
+  //库存分布品牌数据
+  var _kcfbdata = {
+    "category":{
+      "data":["序号","品牌","本店在售","本市平均"]
+    },
+    "series":[]
+  }
+  //库存分布车系数据
+  var _kcfbcxdata = {
+    "category":{
+      "data":["序号","品牌","车系","本店在售","本市平均"]
+    },
+    "series":[
+      {
+        "data":[1,"奔腾","奔腾1系列",11,3.4]
+      },
+      {
+        "data":[2,"奔腾","奔腾2系列",12,3.5]
+      },
+      {
+        "data":[3,"奔腾","奔腾3系列",13,3.6]
+      },
+      {
+        "data":[4,"奔腾","奔腾4系列",14,3.7]
+      },
+      {
+        "data":[5,"奔腾","奔腾5系列",15,3.8]
+      },
+      {
+        "data":[6,"奔腾","奔腾6系列",16,3.9]
+      },
+      {
+        "data":[7,"奔腾","奔腾7系列",17,4.0]
+      },
+      {
+        "data":[8,"奔腾","奔腾8系列",18,4.1]
+      },
+      {
+        "data":[9,"奔腾","奔腾9系列",19,4.2]
+      },
+      {
+        "data":[10,"奔腾","奔腾10系列",20,4.3]
+      },
+      {
+        "data":[10,"奔腾2","奔腾20系列",30,4.4]
+      },
+      {
+        "data":[10,"奔腾2","奔腾20系列",30,4.5]
+      }
+    ]
+  }
+
+
+  //库存走势近7天
+  var _kczsdata = {
+    "category":{
+      "data":["日期","在售车源","新增车源","4A平均新增","指标A","指标B","指标C"]
+    },
+    "series":[
+      {'data':["2016-12-18",168,28,10,18,19,20]},
+      {'data':["2016-12-17",167,27,9,17,18,19]},
+      {'data':["2016-12-16",166,26,8,16,17,18]},
+      {'data':["2016-12-15",165,25,7,15,16,17]},
+      {'data':["2016-12-14",164,24,6,14,15,16]},
+      {'data':["2016-12-13",163,23,5,13,14,15]},
+      {'data':["2016-12-12",162,22,4,12,13,14]},
+      {'data':["2016-12-11",161,21,3,11,12,13]},
+      {'data':["2016-12-10",160,20,2,10,11,12]},
+      {'data':["2016-12-9",159,19,1,9,10,11]}
+    ]
+  }
+  //库存走势近30天
+  var _kczsssdata = {
+    "category":{
+      "data":["日期","在售车源","新增车源","4A平均新增","指标A","指标B","指标C"]
+    },
+    "series":[
+      {'data':["2016-12-31",168,128,10,18,19,20]},
+      {'data':["2016-12-30",177,127,9,17,18,19]},
+      {'data':["2016-12-29",186,126,8,16,17,18]},
+      {'data':["2016-12-28",195,125,7,15,16,17]},
+      {'data':["2016-12-27",204,124,6,14,15,16]},
+      {'data':["2016-12-26",213,123,5,13,14,15]},
+      {'data':["2016-12-25",222,122,4,12,13,14]},
+      {'data':["2016-12-24",181,121,3,11,12,13]},
+      {'data':["2016-12-23",171,120,2,10,11,12]},
+      {'data':["2016-12-22",161,128,10,18,19,20]},
+      {'data':["2016-12-21",151,127,9,17,18,19]},
+      {'data':["2016-12-20",141,216,8,16,17,18]},
+      {'data':["2016-12-19",131,125,7,15,16,17]},
+      {'data':["2016-12-18",121,124,6,14,15,16]},
+      {'data':["2016-12-17",111,123,5,13,14,15]},
+      {'data':["2016-12-16",101,122,4,12,13,14]},
+      {'data':["2016-12-15",91,211,3,11,12,13]},
+      {'data':["2016-12-14",81,201,2,10,11,12]},
+      {'data':["2016-12-13",71,281,10,18,19,20]},
+      {'data':["2016-12-12",61,271,9,17,18,19]},
+      {'data':["2016-12-11",266,261,8,16,17,18]},
+      {'data':["2016-12-10",265,251,7,15,16,17]},
+      {'data':["2016-12-9",264,241,6,14,15,16]},
+      {'data':["2016-12-8",263,231,5,13,14,15]},
+      {'data':["2016-12-7",262,221,4,12,13,14]},
+      {'data':["2016-12-6",261,211,3,11,12,13]},
+      {'data':["2016-12-5",260,201,2,10,11,12]},
+      {'data':["2016-12-4",268,281,10,18,19,20]},
+      {'data':["2016-12-3",267,271,9,17,18,19]},
+      {'data':["2016-12-2",266,261,8,16,17,18]},
+      {'data':["2016-12-1",265,251,7,15,16,17]}
+    ]
+  }
+
+  //周转率 车源         
+  var _zzldata={
+    "category":{
+      "data":["日期","本店铺","本市平均"]
+    },
+    "series":[
+      {'data':["2016-12-20",56,70]},
+      {'data':["2016-12-21",66,71]},
+      {'data':["2016-12-22",67,72]},
+      {'data':["2016-12-22",67,72]},
+      {'data':["2016-12-22",67,72]},
+      {'data':["2016-12-22",67,72]},
+      {'data':["2016-12-22",67,72]}
+    ]
+  }
+  //周转率 资金
+  var _zzlzjdata={
+    "category":{
+      "data":["日期","本店铺","本市平均"]
+    },
+    "series":[
+      {'data':["2016-12-20",56,70]},
+      {'data':["2016-12-21",55,69]},
+      {'data':["2016-12-22",54,68]},
+      {'data':["2016-12-23",53,67]},
+      {'data':["2016-12-24",52,66]},
+      {'data':["2016-12-25",51,65]},
+      {'data':["2016-12-26",50,64]}
+    ]
+  }
+
+
+  //北京市二手车库存效率排行榜
+  var _kcxldata={
+    "category":{
+      "data":['序号','商家名称','在售车源','新增车源']
+    },
+    "series":[
+          {
+              'shopid':112,
+              'data':['9','北京福汇祥和二手车有限公司',1108,19]
+          },
+          {
+              'shopid':113,
+              'data':['1','北京福汇祥和二手车有限公司',1108,19]
+          },
+          {
+              'shopid':114,
+              'data':['2','北京福汇祥和二手车有限公司',1108,19]
+          },
+          {
+              'shopid':115,
+              'data':['3','北京福汇祥和二手车有限公司',1108,19]
+          },
+          {
+              'shopid':116,
+              'data':['4','北京福汇祥和二手车有限公司',1108,19]
+          },
+          {
+              'shopid':117,
+              'data':['5','北京福汇祥和二手车有限公司',1108,19]
+          },
+          {
+              'shopid':112,
+              'data':['9','北京福汇祥和二手车有限公司',1108,19]
+          },
+          {
+              'shopid':119,
+              'data':['7','北京福汇祥和二手车有限公司',1108,19]
+          },
+          {
+              'shopid':120,
+              'data':['8','北京福汇祥和二手车有限公司',1108,19]
+          }
+      ]
+  }
+</script>
+<script type="text/javascript" src="./js/lib/zepto.js"></script>
+<script type="text/javascript" src="./js/lib/vue.js"></script>
+<script type="text/javascript" src="./js/lib/echarts.common.min.js"></script>
+<script type="text/javascript" src="./js/index.js"></script>
+</body>
+</html>

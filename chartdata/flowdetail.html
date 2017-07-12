@@ -1,0 +1,60 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>sample</title>
+    <meta charset="utf-8">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-touch-fullscreen" content="yes">
+    <meta content="telephone=no,email=no" name="format-detection">
+    <meta content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no" name="viewport">
+    <meta content="black" name="apple-mobile-web-app-status-bar-style">
+    <meta name="msapplication-tap-highlight" content="no">
+    <meta name="wap-font-scale" content="no">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <link rel="stylesheet" type="text/css" href="./css/main.css">
+</head>
+<body>
+<div class="container">
+    <!--流量详情-->
+    <div class="sec">
+        <div class="sec-time">
+            <input type="text" name="startdate" value="2016-12-23"><span>至</span><input type="text" name="enddate" value="2016-12-25">
+            <div id="datePlugin"></div>
+        </div>
+        <div class="sec-number" id="flowdetails">
+            <div class="number-item">
+                <div class="item-name">在售车源</div>
+                <div class="item-number rise">{{detail[0]}}</div>
+            </div>
+            <div class="number-item">
+                <div class="item-name">总浏览量</div>
+                <div class="item-number rise">{{detail[1]}}</div>
+            </div>
+            <div class="number-item">
+                <div class="item-name">主动线索</div>
+                <div class="item-number rise">{{detail[2]}}</div>
+            </div>
+            <div class="number-item">
+                <div class="item-name">电话量</div>
+                <div class="item-number rise">{{detail[3]}}</div>
+            </div>
+        </div>
+        <div class="sec-chart" id="flowchart"></div>
+        <!--
+        <div class="sec-custom" id="selectlabel">
+            <a v-on:click="isShow=true">指标自定义&gt;</a>
+            <labelselect v-bind:labels="labels" v-bind:iarray="iarray" v-on:sure="sure" v-on:cancel="cancel" v-bind:show="isShow"></labelselect>
+        </div>
+        -->
+        <div class="sec-table" id="flowtable">
+            <scroll-table v-bind:data="tabledata"></scroll-table>
+        </div>
+    </div>
+</div>
+<script type="text/javascript" src="./js/lib/zepto.js"></script>
+<script type="text/javascript" src="./js/lib/vue.js"></script>
+<script type="text/javascript" src="./js/lib/echarts.common.min.js"></script>
+<script type="text/javascript" src="./js/flowdetail.js"></script>
+</body>
+</html>

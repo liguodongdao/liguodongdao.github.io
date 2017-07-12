@@ -1,0 +1,23 @@
+<table class="m-commontable">
+	<thead>
+	  <tr>
+	    <th></th>
+	    <th v-for="item in data.category.data">{{item}}</th>
+	    <th></th>
+	  </tr>
+	</thead>
+	<tbody>
+		<tr v-if="isEmpty">
+			<td v-bind:colspan="data.category['data'].length+2" class="table-empty"><p>暂无数据</p></td>
+		</tr>
+	    <tr v-else v-for="item in data.series" v-bind:class="{active:item.isActive}">
+	      <td></td>
+	      <td v-for="ite in item.data" v-bind:class="{'number':!isNaN(ite)}">{{ite}}</td>
+	      <td></td>
+	    </tr>
+	</tbody>
+</table>
+
+
+
+

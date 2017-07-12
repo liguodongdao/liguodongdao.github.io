@@ -1,0 +1,21 @@
+<div class="m-modalmask" v-bind:style="{display:showModal}">
+    <div class="modalmask-wrapper">
+      <div class="modal-box">
+        <div class="modal-header">
+          <h3>请选择您想要查阅的指标曲线</h3>
+        </div>
+        <div class="modal-body">
+          <div class="m-selectlabel">
+            <p>最多可选4项</p>
+            <ul>
+              <li v-for="(item,index) in labels" v-bind:class="{active:item.active}" v-on:click="select(index)">{{item.name}}</li>
+            </ul>
+          </div>
+        </div>
+        <div class="modal-footer">
+            <button class="btn-cancel" v-on:click="$emit('cancel')">取消</button>
+            <button class="btn-sure" v-on:click="$emit('sure')">确定</button>
+        </div>
+      </div>
+    </div>
+</div>

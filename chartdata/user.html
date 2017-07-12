@@ -1,0 +1,189 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>sample</title>
+    <meta charset="utf-8">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-touch-fullscreen" content="yes">
+    <meta content="telephone=no,email=no" name="format-detection">
+    <meta content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no" name="viewport">
+    <meta content="black" name="apple-mobile-web-app-status-bar-style">
+    <meta name="msapplication-tap-highlight" content="no">
+    <meta name="wap-font-scale" content="no">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <link rel="stylesheet" type="text/css" href="./css/main.css">
+</head>
+<body>
+<div class="container">
+   <!--性别分布-->
+   <div class="sec" id="xbfb">
+       <div class="sec-title">
+        性别分布
+        <p class="title-toggle u-switch">
+          <span data-value="0" class="active">近7天</span>
+          <span data-value="1">近30天</span>
+        </p>
+       </div>
+       <div class="sec-chart">
+       </div>
+   </div>
+   <!--年龄分布-->
+   <div class="sec" id="nlfb">
+     <div class="sec-title">
+       年龄分布
+     </div>
+     <div class="sec-chart">
+     </div>
+     <div class="sec-table">
+       <common-table v-bind:data="tabledata"></common-table>
+     </div>
+   </div>
+   <!--省份分布-->
+   <div class="sec" id="sffb">
+      <div class="sec-title">
+        省份分布
+      </div>
+      <div class="sec-chart">
+      </div>
+      <div class="sec-table">
+        <common-table v-bind:data="tabledata"></common-table>
+      </div>
+   </div>
+   <!--城市分布-->
+   <div class="sec" id="csfb">
+      <div class="sec-title">
+        城市分布
+      </div>
+      <div class="sec-chart">
+        
+      </div>
+      <div class="sec-table">
+        <common-table v-bind:data="tabledata"></common-table>
+      </div>
+   </div>
+</div>
+<script type="text/javascript">
+  //性别分布7天
+  var _xbdata7={
+    "category":{
+      "data":["性别","占比"]
+    },
+    "series":[
+        {'data':['男',78]},
+        {'data':['女',22]}
+    ]
+  }
+  //性别分布30天
+  var _xbdata30={
+    "category":{
+      "data":["性别","占比"]
+    },
+    "series":[
+      {'data':['男',82]},
+      {'data':['女',18]}
+    ]
+  }
+
+
+  //您的用户年龄分布7天
+  var _agedata_a7={
+    "name":"您的用户年龄分布",
+    "category":{
+      "data":["年龄","占比"]
+    },
+    "series":[
+        {'data':['18-24岁',1]},
+        {'data':['25-34岁',2]},
+        {'data':['35-44岁',3]},
+        {'data':['45-54岁',4]},
+        {'data':['55-64岁',5]},
+        {'data':['65岁以上',6]}
+    ]
+  }
+  //北京用户年龄分布7天
+  var _agedata_b7={
+    "name":"北京用户年龄分布",
+    "category":{
+      "data":["年龄","占比"]
+    },
+    "series":[
+        {'data':['18-24岁',7]},
+        {'data':['25-34岁',8]},
+        {'data':['35-44岁',9]},
+        {'data':['45-54岁',10]},
+        {'data':['55-64岁',11]},
+        {'data':['65岁以上',12]}
+    ]
+  }
+  //您的用户年龄分布30天
+  var _agedata_a30={
+    "name":"您的用户年龄分布",
+    "category":{
+      "data":["年龄","占比"]
+    },
+    "series":[
+        {'data':['18-24岁',13]},
+        {'data':['25-34岁',14]},
+        {'data':['35-44岁',15]},
+        {'data':['45-54岁',16]},
+        {'data':['55-64岁',17]},
+        {'data':['65岁以上',18]}
+    ]
+  }
+  //北京用户年龄分布30天
+  var _agedata_b30={
+    "name":"北京用户年龄分布",
+    "category":{
+      "data":["年龄","占比"]
+    },
+    "series":[
+        {'data':['18-24岁',19]},
+        {'data':['25-34岁',20]},
+        {'data':['35-44岁',21]},
+        {'data':['45-54岁',22]},
+        {'data':['55-64岁',23]},
+        {'data':['65岁以上',24]}
+    ]
+  }
+  //省份分布7天
+  var _provincedata7={
+    "category":{
+      "data":["省份","用户数","占比"]
+    },
+    "series":[
+      {'data':["北京",500,58]},
+      {'data':["河北",140,22]},
+      {'data':["内蒙古",130,20]}
+    ]
+  }
+  //省份分布30天
+  var _provincedata30={
+    "category":{
+      "data":["省份","用户数","占比"]
+    },
+    "series":[
+      {'data':["北京",501,59]},
+      {'data':["河北",141,23]},
+      {'data':["内蒙古",131,21]}
+    ]
+  }
+
+  //城市分布
+  var _citydata={
+    "category":{
+      "data":["省份","用户数","占比"]
+    },
+    "series":[
+      {'data':["北京",320,58]},
+      {'data':["苏州",140,22]},
+      {'data':["内蒙古",130,20]}
+    ]
+  }
+</script>
+<script type="text/javascript" src="./js/lib/zepto.js"></script>
+<script type="text/javascript" src="./js/lib/vue.js"></script>
+<script type="text/javascript" src="./js/lib/echarts.min.js"></script>
+<script type="text/javascript" src="./js/user.js"></script>
+</body>
+</html>
