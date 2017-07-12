@@ -445,9 +445,6 @@ ins,
 a {
   text-decoration: none;
   cursor: pointer; }
-html,body{
-  max-width: 1080px;
-}
 /*
 *
 * 一些图标样式的定义
