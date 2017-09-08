@@ -16,21 +16,24 @@
 </head>
 <body>
 	<canvas id="cnv" width="800" height="600"></canvas>
-	<p>Created by Jérémy Heleine for <a href="http://www.sitepoint.com/">SitePoint</a></p>
 </body>
 <script type="text/javascript">
-//
+//三维向量
 var Vertex = function(x, y, z) {
 	this.x = parseFloat(x);
 	this.y = parseFloat(y);
 	this.z = parseFloat(z);
 };
-//
+//二维向量
 var Vertex2D = function(x, y) {
 	this.x = parseFloat(x);
 	this.y = parseFloat(y);
 };
-
+/**
+ * 立方体对象
+ * vetices 存储所有的顶点 
+ * faces   存储所有的面
+ */
 var Cube = function(center, side) {
 	// Generate the vertices
 	var d = side / 2;
@@ -57,14 +60,44 @@ var Cube = function(center, side) {
 	];
 };
 
-function project(M) {
-	// Distance between the camera and the plane
-	var d = 200;
-	var r = d / M.y;
 
-	return new Vertex2D(r * M.x, r * M.z);
+/**
+ * 计算出 世界坐标系 三维向量 
+ * 在视窗中的二维坐标值
+ * @param  {Vertex}   [M] [三维坐标]
+ * @return {Vertex2D} [二维投影向量] 
+ */
+/**
+ *  x = m1+ v1 * t
+ *	y = m2+ v2 * t (1)
+ *  z = m3+ v3 * t
+ *  将平面方程写成点法式方程形式，即有：
+ *  vp1 * (x – n1) + vp2 * (y – n2) + vp3 * (z – n3) = 0 (2)
+ *  则直线与平面的交点一定满足式（1）和（2），联立两式，求得：
+ *  t = ((n1 – m1)*vp1+(n2 – m2)*vp2+(n3 – m3)*vp3) / (vp1* v1+ vp2* v2+ vp3* v3) (3)
+ * 
+ */
+function project(M) {
+	//平面法线向量
+	var vp = new Vertex(0,10,0);
+	//平面上一点
+	var n = new Vertex(0,0,0);
+
+	// 摄像机三维坐标
+	var m = new Vertex(0,-260,0);
+	//摄像机和目标点连线形成的向量
+    var v1 = M.x-m.x,
+    	v2 = M.y-m.y,
+    	v3 = M.z-m.z;
+
+    var t = ((n.x-m.x)*vp.x+(n.y-m.y)*vp.y+(n.z-m.z)*vp.z)/(vp.x*v1+vp.y*v2+vp.z*v3)
+
+    return new Vertex2D(m.x+v1*t,m.z+v3*t);
 }
 
+//最终渲染的时候 
+//是把所有的面遍历一遍
+//渲染出来
 function render(objects, ctx, dx, dy) {
 	// Clear the previous frame
 	ctx.clearRect(0, 0, 2*dx, 2*dy);
@@ -125,6 +158,10 @@ function render(objects, ctx, dx, dy) {
 	document.addEventListener('mousemove', move);
 	document.addEventListener('mouseup', stopMove);
 
+	canvas.addEventListener('touchstart', initMove);
+	document.addEventListener('touchmove', move);
+	document.addEventListener('touchend', stopMove);
+
 	// Rotate a vertice
 	function rotate(M, center, theta, phi) {
         // Rotation matrix coefficients
@@ -145,6 +182,9 @@ function render(objects, ctx, dx, dy) {
 
 	// Initialize the movement
 	function initMove(evt) {
+		if(evt.touches){
+			evt = evt.touches[0]
+		}
 		clearTimeout(autorotate_timeout);
 		mousedown = true;
 		mx = evt.clientX;
@@ -152,6 +192,9 @@ function render(objects, ctx, dx, dy) {
 	}
 
 	function move(evt) {
+		if(evt.touches){
+			evt = evt.touches[0]
+		}
 		if (mousedown) {
 			var theta = (evt.clientX - mx) * Math.PI / 360;
 			var phi = (evt.clientY - my) * Math.PI / 180;
